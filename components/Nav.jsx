@@ -16,7 +16,6 @@ const Nav = () => {
 
       setProviders(response)
 
-      console.log(response)
     }
 
     setToProviders();
@@ -31,7 +30,7 @@ const Nav = () => {
           <button type="button" onClick={signOut}
             className="text-black bg-white border border-black rounded-3xl py-1.5 px-7 text-sm">Sign Out</button>
 
-          <img src="src" alt={session?.user.image}
+          <img src={"my own sorce"} alt={session?.user.image}
           className="w-16 h-16 rounded-full" />
         </div>
       ) : (
