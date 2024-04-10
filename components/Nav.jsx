@@ -24,14 +24,14 @@ const Nav = () => {
   return (
     <div>
       {session?.user ? (
-        <div className="flex gap-12 py-4 px-8">
+        <div className="flex gap-12 py-4 px-8 items-center">
           <Link href="/" className="text-white text-sm bg-black rounded-3xl py-1.5 px-7">Create Post</Link>
 
           <button type="button" onClick={signOut}
             className="text-black bg-white border border-black rounded-3xl py-1.5 px-7 text-sm">Sign Out</button>
 
           <img src={session?.user.image} alt={"my own sorce"}
-          className="w-16 h-16 rounded-full" />
+          className="w-8 h-8 rounded-full" />
         </div>
       ) : (
         <>
