@@ -35,7 +35,7 @@ const CreatePrompt = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="bg-red-50">
       <textarea className="w-64 h-24 resize-none" value={post} required
       onChange={e => setPost(e.target.value)} placeholder="Type something here..." />
       <button disabled={submitting} type="submit" className="px-7 py-1.5 rounded-lg bg-black text-white">
