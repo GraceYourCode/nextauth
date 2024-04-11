@@ -25,7 +25,7 @@ const Nav = () => {
     <div>
       {session?.user ? (
         <div className="flex gap-12 py-4 px-8 items-center">
-          <Link href="/" className="text-white text-sm bg-black rounded-3xl py-1.5 px-7">Create Post</Link>
+          <Link href="/create" className="text-white text-sm bg-black rounded-3xl py-1.5 px-7">Create Post</Link>
 
           <button type="button" onClick={signOut}
             className="text-black bg-white border border-black rounded-3xl py-1.5 px-7 text-sm">Sign Out</button>
