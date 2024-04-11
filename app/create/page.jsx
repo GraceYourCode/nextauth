@@ -1,8 +1,8 @@
 const CreatePrompt = () => {
   return (
-    <div>
-      Create things
-    </div>
+    <form onSubmit={}>
+        <textarea className="w-64 h-24 resize-none" />
+    </form>
   )
 }
 
