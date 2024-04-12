@@ -15,7 +15,7 @@ const Identifier = () => {
         width={24}
         height={24} />
 
-      <p className="font-semibold">{session?.user.username}</p>
+      <p className="font-semibold">{session?.user.name}</p>
 
       <p>2 weeks ago</p>
     </div>
