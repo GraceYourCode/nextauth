@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <div className="flex justify-center w-screen">
-      <main className=" w-1/2 flex items-center py-5">
+      <main className=" w-1/2 flex flex-col gap-y-4 items-center py-5">
         {allComments &&
           allComments.map(comment => (
             <Comment 
