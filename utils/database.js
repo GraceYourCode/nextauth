@@ -7,7 +7,7 @@ export const connectToDB = async () => {
 
   if (isConnected) {
     console.log("MongoDb is already connected");
-    return;
+    return mongoose;
   }
 
   try {
@@ -20,7 +20,9 @@ export const connectToDB = async () => {
     isConnected = true;
 
     console.log("Database is connected");
+    return mongoose
 } catch (error) {
     console.log(error);
+    throw error
   }
 }
