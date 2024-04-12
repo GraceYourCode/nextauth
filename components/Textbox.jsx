@@ -27,7 +27,11 @@ const Textbox = () => {
         })
       });
 
-      if (response.ok) router.push("/");
+      //re-routes to home page
+      if (response.ok) {
+        router.push("/");
+        setContent(""); // empty the value of the text area
+      };
 
     } catch (error) {
       console.log(error);
