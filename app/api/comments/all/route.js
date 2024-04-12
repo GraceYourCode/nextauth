@@ -3,12 +3,11 @@ import { connectToDB } from "@/utils/database"
 
 export const GET = async () => {
   try {
-    const dataBase = await connectToDB();
+    await connectToDB();
 
-    const collection = new dataBase.Collection("comments", dataBase.connection, {});
-    const data = await collection.find({}).toArray();
-    console.log(data, "i wan see wetin dey sup")
-
+    // const collection = new dataBase.Collection("comments", dataBase.connection, {});
+    // const data = await collection.find({}).toArray();
+    const data = await Comment.find({}).populate("creator");
 
     return new Response(JSON.stringify(data), {
       status: 200,
