@@ -13,7 +13,7 @@ export const GET = async () => {
         status: 200,
       })
     } catch (error) {
-      return new Response("Failed to fetch comments", {
+      return new Response(JSON.stringify("Failed to fetch comments"), {
         status: 500,
       })
     }

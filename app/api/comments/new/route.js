@@ -19,7 +19,7 @@ export const POST = async (req) => {
       status: 201,
     })
   } catch (error) {
-    return new Response("Failed to create new comment", {
+    return new Response(JSON.stringify("Failed to create new comment"), {
       status: 500,
     })
   }
