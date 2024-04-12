@@ -10,10 +10,13 @@ export default function Home() {
   const [allComments, setAllComments] = useState();
 
   useEffect(() => {
-    fetch("/api/comments/all")
-      .then(res=> res.json)
-      .then(data=> console.log(data))
-      .catch(err => console.error(err));
+   const fectchComments = async () => {
+    const response = await fetch("/api/comments/all");
+    const data = await response.json();
+    console.log(data);
+   }
+
+   fectchComments();
   }, []);
 
   return (

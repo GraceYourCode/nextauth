@@ -7,6 +7,8 @@ export const GET = async () => {
 
       const comments = await Comment.find({}).populate("creator");
 
+      console.log(comments)
+
       return new Response(JSON.stringify(comments), {
         status: 200,
       })
