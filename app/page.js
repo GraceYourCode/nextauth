@@ -1,8 +1,9 @@
-import Image from "next/image";
+import Comment from "@/components/Comment";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="py-10 w-1/2 m-auto">
+      <Comment />
     </main>
   );
 }

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 
 const Navigation = () => {
-  const {data: session} = useSession();
+  const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
 
@@ -23,22 +23,33 @@ const Navigation = () => {
   }, [])
 
   return (
-    <nav>
+    <nav className="text-right w-1/2 py-3">
+      {/**checks if user is logged in, it displays sign out
+       * so the user can sign out
+       */}
+
       {session?.user ? (
-        <button onClick={signOut}>Sign Out</button>
-      ): (
+        <button className="text-blue cursor-pointer" onClick={signOut}>
+          Sign Out
+        </button>
+      ) : (
+
         <>
-           {providers &&
+        {/** since user is not logged in, 
+         * it asks user to log in
+         */}
+          {providers &&
             Object.values(providers).map(provider => (
-              <button type="button" key={provider.name} 
-              className="text-black bg-white border border-black rounded-3xl py-1.5 px-7 text-sm"
-              onClick={() => signIn(provider.id)}>Sign In</button>
-            ))
-          }
+              <button key={provider.name} className="text-blue cursor-pointer hover:te"
+                onClick={() => signIn(provider.id)}>
+                Sign In
+              </button>
+            ))}
         </>
       )}
     </nav>
   )
 }
+
 
 export default Navigation

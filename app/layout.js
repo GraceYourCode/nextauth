@@ -1,9 +1,9 @@
-import { Inter } from "next/font/google";
+import { Rubik } from "next/font/google";
 import "./globals.css";
 import Provider from "@/components/Provider";
 import Navigation from "@/components/Nav";
 
-const inter = Inter({ subsets: ["latin"] });
+const rubik = Rubik({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Learning Next JS",
@@ -13,10 +13,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={rubik.className}>
         <Provider>
-          <Navigation />
-          <main>{children}</main>
+          <div className="bg-background min-h-screen flex-col flex items-center">
+            <Navigation />
+            <main>{children}</main>
+          </div>
         </Provider>
       </body>
     </html>

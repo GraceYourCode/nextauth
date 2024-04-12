@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  background: none;
+  outline: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.icons {
+  @apply text-gray-blue text-xs hover:text-blue font-medium
+}
+
+.align {
+  @apply px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24
+}
