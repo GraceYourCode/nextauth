@@ -18,3 +18,7 @@
 .align {
   @apply px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24
 }
+
+.auth {
+  @apply text-blue cursor-pointer hover:text-gray-blue text-sm font-bold
+}

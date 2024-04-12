@@ -3,6 +3,7 @@
 import { getProviders, signIn, signOut, useSession } from "next-auth/react"
 
 import { useEffect, useState } from "react";
+import Image from "next/image"
 
 
 
@@ -29,9 +30,16 @@ const Navigation = () => {
        */}
 
       {session?.user ? (
-        <button className="text-blue cursor-pointer" onClick={signOut}>
+        <div className="flex items-center gap-4">
+        <Image
+        alt="profile pic"
+        src={session?.user.image}
+        height={35}
+        width={35} />
+        <button className="auth" onClick={signOut}>
           Sign Out
         </button>
+        </div>
       ) : (
 
         <>
@@ -40,7 +48,7 @@ const Navigation = () => {
          */}
           {providers &&
             Object.values(providers).map(provider => (
-              <button key={provider.name} className="text-blue cursor-pointer hover:text-gray-blue text-sm font-bold"
+              <button key={provider.name} className="auth"
                 onClick={() => signIn(provider.id)}>
                 Sign In
               </button>
