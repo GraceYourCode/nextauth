@@ -5,7 +5,7 @@ import Contents from "./Contents";
 
 const Comment = ({ likes, content, username, dateCreated }) => {
   return (
-    <div className="bg-white p-5 rounded-md flex gap-4 items-center">
+    <div className="bg-white p-5 rounded-md flex gap-4 items-center w-full">
 
       {/* this aside tag below is meant for desktop view */}
       <aside className="bg-background px-3 rounded-md py-3">

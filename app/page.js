@@ -20,6 +20,25 @@ export default function Home() {
     fectchComments();
   }, []);
 
+  const getTimeDifference = (recordedDateString) => {
+    // Convert the recorded date string to a Date object
+    const recordedDate = new Date(recordedDateString);
+
+    // Get the current date and time
+    const currentDate = new Date();
+
+    // Calculate the time difference in milliseconds
+    const timeDifference = currentDate.getTime() - recordedDate.getTime();
+
+    // Convert milliseconds to hours, minutes, and seconds
+    const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+    // Return the formatted time difference
+    return `${hours} hours, ${minutes} minutes, and ${seconds} seconds`;
+}
+
   return (
     <div className="flex justify-center w-screen">
       <main className=" w-1/2 flex flex-col gap-y-4 items-center py-5">
@@ -27,7 +46,7 @@ export default function Home() {
           allComments.map(comment => (
             <Comment 
             content={comment.content}
-            dateCreated={comment.dateCreated}
+            dateCreated={getTimeDifference(comment.dateCreated)}
             likes={comment.likes}
             username={comment.creator.username}
             key={comment._id} />
