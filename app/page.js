@@ -7,13 +7,12 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const { data: session } = useSession();
-  const [allComments, setAllComments] = useState(undefined);
+  const [allComments, setAllComments] = useState();
 
   useEffect(() => {
     const fectchComments = async () => {
       const response = await fetch("/api/comments/all");
       const data = await response.json();
-      console.log(data);
       setAllComments(data);
     }
 
