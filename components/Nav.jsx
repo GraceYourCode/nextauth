@@ -41,7 +41,7 @@ const Navigation = () => {
           {providers &&
             Object.values(providers).map(provider => (
               <button key={provider.name} className="text-blue cursor-pointer hover:text-gray-blue text-sm font-bold"
-                onClick={signIn(provider.id)}>
+                onClick={() => signIn(provider.id)}>
                 Sign In
               </button>
             ))}
