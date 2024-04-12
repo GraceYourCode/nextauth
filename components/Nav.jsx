@@ -28,7 +28,7 @@ const Navigation = () => {
       {/**checks if user is logged in, it displays sign out
        * so the user can sign out
        */}
-
+      {session?.user && console.log(session?.user, session.user.image)}
       {session?.user ? (
         <div className="flex items-center gap-4">
         <Image
