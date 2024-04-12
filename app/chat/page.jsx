@@ -1,6 +1,7 @@
 "use client"
 
 import Comments from "@/components/Comments";
+import Textbox from "@/components/Textbox";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
