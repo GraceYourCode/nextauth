@@ -33,7 +33,7 @@ const Navigation = () => {
         <div className="flex items-center gap-4">
         <Image
         alt="profile pic"
-        src={session?.user.image}
+        src={session?.user.image.json()}
         height={35}
         width={35} />
         <button className="auth" onClick={signOut}>
