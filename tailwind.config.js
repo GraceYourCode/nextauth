@@ -13,7 +13,9 @@ module.exports = {
         "light-gray": " hsl(223, 19%, 93%)",
         "gray-blue": "hsl(239, 57%, 85%)",
         "dark-blue": "hsl(212, 24%, 26%)",
-        "contents": " hsl(211, 10%, 45%)"
+        "contents": " hsl(211, 10%, 45%)",
+        "pale-red": "hsl(357, 100%, 86%)",
+        "red": "hsl(358, 79%, 66%)"
       },
       fontFamily: {
         primary: "Rubik",

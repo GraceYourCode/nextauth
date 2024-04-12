@@ -1,9 +1,13 @@
 import Comment from "@/components/Comment";
+import Textbox from "@/components/Textbox";
 
 export default function Home() {
   return (
-    <main className="py-10 w-1/2 m-auto">
-      <Comment />
-    </main>
+    <div className="flex justify-center w-screen">
+      <main className=" w-1/2 flex items-center py-5">
+        <Comment />
+        <Textbox />
+      </main>
+    </div>
   );
 }

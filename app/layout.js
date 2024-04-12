@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={rubik.className}>
         <Provider>
-          <div className="bg-background min-h-screen flex-col flex items-center">
+          <div className="bg-background min-h-screen w-screen flex-col flex items-center">
             <Navigation />
             <main>{children}</main>
           </div>
