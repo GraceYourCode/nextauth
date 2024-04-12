@@ -4,7 +4,7 @@ import Image from "next/image";
 import dp from "@/public/assets/image-amyrobson.png"
 import { useSession } from "next-auth/react";
 
-const Identifier = () => {
+const Identifier = ({ username, date }) => {
   const { data: session } = useSession();
 
   return (
@@ -15,9 +15,9 @@ const Identifier = () => {
         width={24}
         height={24} />
 
-      <p className="font-semibold">{session?.user.name}</p>
+      <p className="font-semibold">{username}</p>
 
-      <p>2 weeks ago</p>
+      <p>{date}</p>
     </div>
   )
 }
