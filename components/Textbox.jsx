@@ -2,11 +2,14 @@
 
 import Image from "next/image";
 import dp from "@/public/assets/image-amyrobson.png";
+import io from "socket.io-client";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const Textbox = () => {
+  const socket = io("http://localhost:4000");;
+
   const [content, setContent] = useState();
   const [submitting, setSubmitting] = useState(false);
   const { data: session } = useSession();
@@ -16,15 +19,16 @@ const Textbox = () => {
     e.preventDefault();
     setSubmitting(true);
 
+    const newComment = {
+      userId: session?.user.id,
+      content: content,
+      likes: 0,
+      dateCreated: new Date(),
+    }
     try {
       const response = await fetch("/api/comments/new", {
         method: "POST",
-        body: JSON.stringify({
-          userId: session?.user.id,
-          content: content,
-          likes: 0,
-          dateCreated: new Date(),
-        })
+        body: JSON.stringify(newComment)
       });
 
       //re-routes to home page
@@ -32,6 +36,8 @@ const Textbox = () => {
         router.push("/chat");
         setContent(""); // empty the value of the text area
       };
+
+      socket.emit("chat-comment", newComment);
 
     } catch (error) {
       console.log(error);

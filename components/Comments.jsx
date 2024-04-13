@@ -1,6 +1,27 @@
 import Comment from "@/components/Comment";
+import io from "socket.io-client";
+import posts from "@/store/store";
+import { useContext, useEffect } from "react";
 
-const Comments = ({ posts }) => {
+const Comments = () => {
+  const socket = io("http://localhost:4000")
+  const { allPosts, setAllPosts } = useContext(posts);
+
+  socket.on("chat-comment", msg => {
+    setAllPosts([...allPosts, msg]);
+  })
+
+  useEffect(() => {
+    socket.connect();
+    const fetchData = async () => {
+      fetch("api/comments/all")
+        .then(response => response.json())
+        .then(data => setAllPosts(data))
+        .catch(error => console.error(error));
+    }
+
+    fetchData();
+  }, [])
 
   const getTimeDifference = (recordedDateString) => {
     // Convert the recorded date string to a Date object
@@ -25,8 +46,8 @@ const Comments = ({ posts }) => {
 
   return (
     <>
-      {posts &&
-        posts.map(comment => (
+      {allPosts &&
+        allPosts.map(comment => (
           <Comment
             content={comment.content}
             dateCreated={getTimeDifference(comment.dateCreated)}
