@@ -8,7 +8,7 @@ const Identifier = ({ username, date }) => {
   const { data: session } = useSession();
 
   return (
-    <div className="flex gap-3 text-sm items-center text-dark-blue ">
+    <div className="flex gap-3 text-xs xs:text-sm items-center text-dark-blue ">
       <Image
         alt="profile"
         src={dp}

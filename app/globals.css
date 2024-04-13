@@ -9,6 +9,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .icons {
@@ -16,7 +17,7 @@
 }
 
 .align-page {
-  @apply w-full p-4 xs:p-8 sm:w-11/12 md:w-10/12 lg:w-3/4 xl:w-1/2 sm:px-0
+  @apply w-full p-4 xs:p-6 sm:w-11/12 md:w-10/12 lg:w-3/4 xl:w-1/2 sm:px-0
 }
 
 .auth {

@@ -49,7 +49,7 @@ const Textbox = () => {
   }
 
   return (
-    <form onSubmit={postComment} className="bg-white rounded-md fixed w-1/2 bottom-5 flex gap-3 items-start p-5">
+    <form onSubmit={postComment} className="bg-white rounded-md fixed align-page bottom-5 flex gap-3 items-start p-5">
       <Image
         alt="dp"
         src={dp}

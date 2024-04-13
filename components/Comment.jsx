@@ -7,7 +7,7 @@ const Comment = ({ likes, content, username, dateCreated }) => {
   return (
     <div className="bg-white p-5 rounded-md flex gap-4 items-center w-full">
 
-      {/* this aside tag below is meant for desktop view */}
+      {/* this aside tag below is meant for desktop view and tablet view */}
       <aside className="bg-background px-3 rounded-md py-3 hidden xs:block">
         <button className="flex flex-col gap-3 items-center">
           <FaPlus className="icons" />
@@ -21,9 +21,21 @@ const Comment = ({ likes, content, username, dateCreated }) => {
       <main className="flex flex-col w-full gap-y-3">
         <div className="flex justify-between w-full">
           <Identifier date={dateCreated} username={username} />
-          <Button />
+          <Button hide={true} />
         </div>
         <Contents content={content} />
+        <div className="flex xs:hidden justify-between">
+          <aside className="bg-background px-4 rounded-lg py-2">
+            <button className="flex gap-3 items-center">
+              <FaPlus className="icons" />
+
+              <p className="font-medium text-blue">{likes}</p>
+
+              <FaMinus className="icons" />
+            </button>
+          </aside>
+          <Button />
+        </div>
       </main>
     </div>
   )
