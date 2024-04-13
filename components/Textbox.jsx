@@ -25,7 +25,7 @@ const Textbox = () => {
       likes: 0,
       dateCreated: new Date(),
     }
-    console.log(newComment)
+
     try {
       const response = await fetch("/api/comments/new", {
         method: "POST",
@@ -39,7 +39,7 @@ const Textbox = () => {
         setContent(""); // empty the value of the text area
       };
 
-      // socket.emit("chat-comment", newComment);
+      socket.emit("chat-comment", await response.json());
 
     } catch (error) {
       console.log(error);
