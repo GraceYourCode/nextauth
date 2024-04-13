@@ -25,6 +25,7 @@ const Textbox = () => {
       likes: 0,
       dateCreated: new Date(),
     }
+    console.log(newComment)
     try {
       const response = await fetch("/api/comments/new", {
         method: "POST",
