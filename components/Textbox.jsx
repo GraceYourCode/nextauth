@@ -32,6 +32,7 @@ const Textbox = () => {
         body: JSON.stringify(newComment)
       });
 
+      console.log(response.json());
       //re-routes to home page
       if (response.ok) {
         router.push("/chat");

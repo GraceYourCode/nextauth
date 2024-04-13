@@ -11,7 +11,7 @@ export const POST = async (req) => {
       content,
       likes,
       dateCreated
-    });
+    }).populate("creator");
 
     await newComment.save();
 
