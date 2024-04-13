@@ -32,14 +32,14 @@ const Textbox = () => {
         body: JSON.stringify(newComment)
       });
 
-      console.log(await response.json());
+      const pushData = await response.json();
       //re-routes to home page
       if (response.ok) {
         router.push("/chat");
         setContent(""); // empty the value of the text area
       };
 
-      socket.emit("chat-comment", await response.json());
+      socket.emit("chat-comment", pushData);
 
     } catch (error) {
       console.log(error);
