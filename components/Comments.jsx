@@ -4,7 +4,7 @@ import posts from "@/store/store";
 import { useContext, useEffect } from "react";
 
 const Comments = () => {
-  const socket = io("http://localhost:4000")
+  const socket = io("http://gyc-chat-section.vercel.app:4000")
   const { allPosts, setAllPosts } = useContext(posts);
 
   socket.on("chat-comment", msg => {

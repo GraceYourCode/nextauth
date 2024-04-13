@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const Textbox = () => {
-  const socket = io("http://localhost:4000");;
+  const socket = io("http://gyc-chat-section.vercel.app:4000");;
 
   const [content, setContent] = useState();
   const [submitting, setSubmitting] = useState(false);
