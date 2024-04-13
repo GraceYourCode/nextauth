@@ -38,7 +38,7 @@ const Textbox = () => {
         setContent(""); // empty the value of the text area
       };
 
-      socket.emit("chat-comment", newComment);
+      // socket.emit("chat-comment", newComment);
 
     } catch (error) {
       console.log(error);
