@@ -15,8 +15,8 @@
   @apply text-gray-blue text-xs hover:text-blue font-medium
 }
 
-.align {
-  @apply px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24
+.align-page {
+  @apply w-full p-4 xs:p-8 sm:w-11/12 md:w-10/12 lg:w-3/4 xl:w-1/2 sm:px-0
 }
 
 .auth {

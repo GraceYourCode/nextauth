@@ -16,7 +16,7 @@ const ChatPage = () => {
     <posts.Provider value={{ allPosts, setAllPosts }}>
       <>
         <div className="flex justify-center w-screen">
-          <main className=" w-1/2 flex flex-col gap-y-4 items-center py-5">
+          <main className="align-page flex flex-col gap-y-4 items-center py-3 md:py-5">
             <Comments posts={posts} />
             {session?.user && <Textbox />}
           </main>

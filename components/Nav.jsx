@@ -24,7 +24,7 @@ const Navigation = () => {
   }, [])
 
   return (
-    <nav className="text-right w-1/2 py-3">
+    <nav className="text-right align-page py-3">
       {/**checks if user is logged in, it displays sign out
        * so the user can sign out
        */}

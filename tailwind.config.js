@@ -19,6 +19,9 @@ module.exports = {
       },
       fontFamily: {
         primary: "Rubik",
+      },
+      screens: {
+        "xs": "490px"
       }
     },
     
