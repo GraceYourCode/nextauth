@@ -22,7 +22,7 @@ const Textbox = () => {
   // keep track of previous scroll position
   let prevScrollPos = window.scrollY;
 
-  window.addEventListener('scroll', () => {
+  const onScroll = () => {
     // current scroll position
     const currentScrollPos = window.scrollY;
 
@@ -38,7 +38,16 @@ const Textbox = () => {
 
     // updates the value of scroll position
     prevScrollPos = currentScrollPos;
-  })
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll',onScroll)
+
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+    }
+  }, [])
+
 
   const postComment = async (e) => {
     e.preventDefault();

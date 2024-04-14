@@ -17,7 +17,7 @@ const Navigation = () => {
   // keep track of previous scroll position
   let prevScrollPos = window.scrollY;
 
-  window.addEventListener('scroll', function () {
+  const onScroll = () => {
     // current scroll position
     const currentScrollPos = this.window.scrollY;
 
@@ -29,17 +29,25 @@ const Navigation = () => {
 
     // update previous scroll position
     prevScrollPos = currentScrollPos;
-  });
+  }
 
+  
   useEffect(() => {
     const setToProviders = async () => {
       const response = await getProviders();
-
+      
       setProviders(response)
+      
+    }
+    
+    setToProviders();
+    
+    window.addEventListener('scroll', onScroll);
 
+    return () => {
+      window.removeEventListener("scroll", onScroll)
     }
 
-    setToProviders();
   }, [])
 
   return (
