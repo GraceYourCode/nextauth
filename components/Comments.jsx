@@ -11,15 +11,32 @@ const Comments = () => {
     setAllPosts([...allPosts, msg]);
   })
 
+  socket.on("chat-reply", msg => {
+    const updatedPosts = allPosts.map((post) => {
+      if (post._id === msg.commentId) {
+        return {
+          ...post,
+          rreplies: [...post.replies, msg],
+        }
+      }
+      return post;
+    })
+
+    setAllPosts(updatedPosts);
+  })
+
   useEffect(() => {
     socket.connect();
     const fetchData = async () => {
       fetch("api/comments/all")
         .then(response => response.json())
-        .then(data => setAllPosts(data))
+        .then(data => {
+          setAllPosts(data);
+          console.log(data)
+          console.log(allPosts)
+        })
         .catch(error => console.error(error));
     }
-
     fetchData();
   }, [])
 

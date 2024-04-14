@@ -14,6 +14,10 @@ const io = new Server(httpServer, {
 io.on("connection", (socket) => {
   socket.on("chat-comment", msg => {
     io.emit("chat-comment", msg)
+  });
+
+  socket.on("chat-reply", msg => {
+    io.emit("chat-reply", msg)
   })
 })
 

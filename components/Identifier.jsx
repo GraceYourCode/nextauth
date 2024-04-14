@@ -12,7 +12,7 @@ const Identifier = ({ username, date, image }) => {
       <Image
       className="rounded-full"
         alt="profile"
-        src={image}
+        src={image ? image : dp}
         width={28}
         height={28} />
 

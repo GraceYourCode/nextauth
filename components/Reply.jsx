@@ -2,8 +2,19 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import Identifier from "./Identifier";
 import Button from "./Button";
 import Contents from "./Contents";
+import Replybox from "./Replybox";
+import { useContext } from "react";
+import posts from "@/store/store";
 
-const Reply = ({ likes, content, username, dateCreated }) => {
+const Reply = ({ likes, content, username, dateCreated, id }) => {
+  const { reply, setReply } = useContext(posts)
+
+  const showReplyBox = (id) => {
+    setReply({
+      id: id,
+      show: true,
+    })
+  }
   return (
     <>
       <div className="bg-white w-95% p-5 rounded-md flex gap-4 items-start min-h-fit">
@@ -22,7 +33,7 @@ const Reply = ({ likes, content, username, dateCreated }) => {
         <main className="flex flex-col w-full gap-y-3">
           <div className="flex justify-between w-full">
             <Identifier date={dateCreated} username={username} />
-            <Button hide={true} />
+            <Button hide={true} click={showReplyBox} id={id} />
           </div>
           <Contents content={content} />
           {
@@ -37,11 +48,16 @@ const Reply = ({ likes, content, username, dateCreated }) => {
                   <FaMinus className="icons" />
                 </button>
               </aside>
-              <Button />
+              <Button click={showReplyBox} id={id} />
             </div>
           }
         </main>
       </div>
+      {
+        reply &&
+        reply.id === id &&
+        <Replybox reply={reply} />
+      }
     </>
   )
 }

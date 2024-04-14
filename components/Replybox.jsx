@@ -5,7 +5,6 @@ import dp from "@/public/assets/image-amyrobson.png";
 import io from "socket.io-client";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { IoIosSend } from "react-icons/io";
 import posts from "@/store/store";
 
@@ -30,7 +29,7 @@ const Replybox = ({ asReply }) => {
   };
 
   useEffect(() => {
-    if (input) {
+    if (!input) {
       input.current.setSelectionRange(input.current.value.length, input.current.value.length);
       input.current.focus();
     }
@@ -46,27 +45,28 @@ const Replybox = ({ asReply }) => {
     e.preventDefault();
     setSubmitting(true);
 
-    const newComment = {
+    const newReply = {
       userId: session?.user.id,
-      content: content,
+      content: content.split("").slice(1).join(" "),
       likes: 0,
       dateCreated: new Date(),
+      commentId,
+      replyingTo: content.split(" ")[0].slice(1),
     }
 
     try {
-      const response = await fetch("/api/comments/new", {
+      const response = await fetch("/api/reply/new", {
         method: "POST",
-        body: JSON.stringify(newComment)
+        body: JSON.stringify(newReply)
       });
 
       const pushData = await response.json();
       //re-routes to home page
       if (response.ok) {
-        // router.push("/chat");
         setContent(""); // empty the value of the text area
       };
 
-      socket.emit("chat-comment", pushData);
+      socket.emit("chat-reply", pushData);
 
     } catch (error) {
       console.log(error);
@@ -96,7 +96,7 @@ const Replybox = ({ asReply }) => {
                 else setContent(e.target.value);
               }
             }
-            className="resize-none p-2.5 text-sm w-full h-10 xs:h-16 sm:h-20 border border-solid border-light-gray rounded-md" />
+            className="textbox" />
           {
             //send button for desktop view
             <button type="submit" className="text-white hidden xl:block disabled:bg-gray-blue px-5

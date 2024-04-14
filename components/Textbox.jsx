@@ -106,7 +106,7 @@ const Textbox = ({ asReply }) => {
               setContent(e.target.value)
             }
           }
-          className="resize-none p-2.5 text-sm w-full h-10 xs:h-16 sm:h-20 border border-solid border-light-gray rounded-md" />
+          className="textbox" />
 
         {
           //send button for desktop view
