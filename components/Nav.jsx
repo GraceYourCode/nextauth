@@ -13,22 +13,24 @@ const Navigation = () => {
   const [providers, setProviders] = useState(null);
   const [fixed, setFixed] = useState(false)
 
+  const window = this.window;
+
   // keep track of previous scroll position
-let prevScrollPos = window.scrollY;
+  let prevScrollPos = window.scrollY;
 
-window.addEventListener('scroll', function() {
-  // current scroll position
-  const currentScrollPos = window.scrollY;
+  window.addEventListener('scroll', function () {
+    // current scroll position
+    const currentScrollPos = window.scrollY;
 
-  if (prevScrollPos > currentScrollPos) {
-    // user has scrolled up
-    if (currentScrollPos === 0) setFixed(false);
-    else setFixed(true);
-  } else setFixed(false);
+    if (prevScrollPos > currentScrollPos) {
+      // user has scrolled up
+      if (currentScrollPos === 0) setFixed(false);
+      else setFixed(true);
+    } else setFixed(false);
 
-  // update previous scroll position
-  prevScrollPos = currentScrollPos;
-});
+    // update previous scroll position
+    prevScrollPos = currentScrollPos;
+  });
 
   useEffect(() => {
     const setToProviders = async () => {
@@ -53,7 +55,7 @@ window.addEventListener('scroll', function() {
       ) : (
 
         <>
-        {/** since user is not logged in, 
+          {/** since user is not logged in, 
          * it asks user to log in
          */}
           {providers &&
