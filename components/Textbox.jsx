@@ -40,7 +40,7 @@ const Textbox = () => {
         setContent(""); // empty the value of the text area
       };
 
-      // socket.emit("chat-comment", pushData);
+      socket.emit("chat-comment", pushData);
 
     } catch (error) {
       console.log(error);
