@@ -15,12 +15,12 @@ const ChatPage = () => {
   return (
     <posts.Provider value={{ allPosts, setAllPosts }}>
       <>
-        <div className="flex justify-center w-screen">
-          <main className="align-page flex flex-col gap-y-4 items-center py-3 md:py-5">
+        <div className="flex flex-col items-center w-screen bg-background" onScroll={()=> console.log("scrolling")}>
+          <main className="align-page flex flex-col gap-y-4 items-center pb-3 md:pb-5">
             <Comments posts={posts} />
             {/* {session?.user && <Textbox />} */}
-            <Textbox />
           </main>
+          <Textbox />
         </div>
       </>
     </posts.Provider>

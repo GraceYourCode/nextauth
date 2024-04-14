@@ -2,12 +2,11 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import Identifier from "./Identifier";
 import Button from "./Button";
 import Contents from "./Contents";
-import Reply from "./Reply";
 
-const Comment = ({ likes, content, username, dateCreated }) => {
+const Reply = ({ likes, content, username, dateCreated }) => {
   return (
-    <div className="flex flex-col items-end w-full gap-4">
-      <div className="bg-white p-5 rounded-md flex gap-4 items-start w-full min-h-fit">
+    <>
+      <div className="bg-white w-95% p-5 rounded-md flex gap-4 items-start min-h-fit">
 
         {/* this aside tag below is meant for desktop view and tablet view */}
         <aside className="bg-background px-3 rounded-md py-3 hidden sm:block">
@@ -43,22 +42,8 @@ const Comment = ({ likes, content, username, dateCreated }) => {
           }
         </main>
       </div>
-
-      {/* this div below holds all the nested replies to each comment */}
-      <div className="w-full flex flex-col items-end lg:w-95% xl:-11/12 border-0 border-l-2 border-solid border-l-light-gray">
-        <Reply 
-        content={
-          `The sections and pages are organized sequentially, from basic to advanced, so you can follow them step-by-step when building your Next.js application. However, you can read them in any order or skip to the pages that apply to your use case.
-
-          If you're new to Next.js, we recommend starting with the Routing, Rendering, Data Fetching and Styling sections, as they introduce the fundamental Next.js and web concepts to help you get started. Then, you can dive deeper into the other sections such as Optimizing and Configuring. Finally, once you're ready, checkout the Deploying and Upgrading sections.`
-        }
-        dateCreated="3 seconds ago"
-        likes={0}
-        username="romancaesar"
-        key={12} />
-      </div>
-    </div>
+    </>
   )
 }
 
-export default Comment
+export default Reply

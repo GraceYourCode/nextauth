@@ -11,6 +11,24 @@ const Navigation = () => {
   const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
+  const [fixed, setFixed] = useState(false)
+
+  // keep track of previous scroll position
+let prevScrollPos = window.scrollY;
+
+window.addEventListener('scroll', function() {
+  // current scroll position
+  const currentScrollPos = window.scrollY;
+
+  if (prevScrollPos > currentScrollPos) {
+    // user has scrolled up
+    if (currentScrollPos === 0) setFixed(false);
+    else setFixed(true);
+  } else setFixed(false);
+
+  // update previous scroll position
+  prevScrollPos = currentScrollPos;
+});
 
   useEffect(() => {
     const setToProviders = async () => {
@@ -24,7 +42,7 @@ const Navigation = () => {
   }, [])
 
   return (
-    <nav className="text-right align-page py-3">
+    <nav className={`${fixed && "fixed"} bg-background text-right align-page py-3`}>
       {/**checks if user is logged in, it displays sign out
        * so the user can sign out
        */}
