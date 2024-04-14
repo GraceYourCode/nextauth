@@ -1,7 +1,12 @@
 "use client"
 
+import dynamic from 'next/dynamic'
+ 
+const Textbox = dynamic(() => import('@/components/Textbox'), {
+  ssr: false,
+})
 import Comments from "@/components/Comments";
-import Textbox from "@/components/Textbox";
+// import Textbox from "@/components/Textbox";
 import { useSession } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 import posts from "@/store/store";
