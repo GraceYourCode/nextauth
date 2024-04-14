@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { IoIosSend } from "react-icons/io";
 
 
-const Textbox = () => {
+const Textbox = ({ asReply }) => {
   const socket = io("http://localhost:4000");;
 
   const [content, setContent] = useState();
@@ -73,10 +73,9 @@ const Textbox = () => {
       });
 
       const pushData = await response.json();
-      console.log(pushData)
       //re-routes to home page
       if (response.ok) {
-        router.push("/chat");
+        // router.push("/chat");
         setContent(""); // empty the value of the text area
       };
 
@@ -90,7 +89,7 @@ const Textbox = () => {
   }
 
   return (
-    <div className={`${fixed ? "fixed pb-0" : "pb-3 md:pb-5"} align-page bottom-0 bg-background`}>
+    <div className={`${fixed ? "fixed pb-0" : "pb-3 md:pb-5"} align-page bottom-0 bg-background }`}>
       <form onSubmit={postComment} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5">
         <Image
           alt="dp"
@@ -99,7 +98,7 @@ const Textbox = () => {
           width={30}
           className="hidden sm:block" />
 
-        <textarea value={content} required
+        <textarea value={content} required disabled={submitting}
           onChange={
             (e) => {
               /* this takes the contents imputed by the user and stores
@@ -111,14 +110,15 @@ const Textbox = () => {
 
         {
           //send button for desktop view
-          <button type="submit" className="text-white hidden xl:block disabled:bg-gray-blue px-5 py-2 bg-blue rounded-md text-sm hover:bg-gray-blue disabled:cursor-not-allowed"
+          <button type="submit" className="text-white hidden xl:block disabled:bg-gray-blue px-5
+          py-2 bg-blue rounded-md text-sm hover:bg-gray-blue disabled:cursor-not-allowed disabled:text-xs"
             disabled={submitting}>
             {submitting ? `SENDING...` : `SEND`}
           </button>
         }
         {
           //send btn for tablet and mobile view 
-          <button className="text-blue xl:hidden text-lg">
+          <button className="text-blue xl:hidden text-3xl sm:text-4xl">
             <IoIosSend />
           </button>
         }

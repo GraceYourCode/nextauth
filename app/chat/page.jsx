@@ -1,7 +1,7 @@
 "use client"
 
 import dynamic from 'next/dynamic'
- 
+
 const Textbox = dynamic(() => import('@/components/Textbox'), {
   ssr: false,
 })
@@ -16,11 +16,17 @@ const ChatPage = () => {
 
   const { data: session } = useSession();
   const [allPosts, setAllPosts] = useState();
+  const [reply, setReply] = useState();
 
   return (
-    <posts.Provider value={{ allPosts, setAllPosts }}>
+    <posts.Provider value={{
+      allPosts,
+      setAllPosts,
+      reply,
+      setReply
+    }}>
       <>
-        <div className="flex flex-col items-center w-screen bg-background" onScroll={()=> console.log("scrolling")}>
+        <div className="flex flex-col items-center w-screen bg-background">
           <main className="align-page flex flex-col gap-y-4 items-center pb-3 md:pb-5">
             <Comments posts={posts} />
             {/* {session?.user && <Textbox />} */}

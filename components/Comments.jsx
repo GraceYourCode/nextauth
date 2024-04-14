@@ -53,6 +53,8 @@ const Comments = () => {
             dateCreated={getTimeDifference(comment.dateCreated)}
             likes={comment.likes}
             username={comment.creator.username}
+            image={comment.creator.image}
+            id={comment._id}
             key={comment._id} />
         ))
       }

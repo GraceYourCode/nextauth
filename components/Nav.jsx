@@ -1,6 +1,7 @@
 "use client"
 
 import { getProviders, signIn, signOut, useSession } from "next-auth/react"
+import Image from "next/image";
 
 import { useEffect, useState } from "react";
 
@@ -61,9 +62,17 @@ const Navigation = () => {
        * so the user can sign out
        */}
       {session?.user ? (
-        <button className="auth" onClick={signOut}>
-          Sign Out
-        </button>
+        <>
+          <Image
+            width={28}
+            height={28}
+            src={session?.user.image}
+            alt="profile pic" />
+            
+          <button className="auth" onClick={signOut}>
+            Sign Out
+          </button>
+        </>
       ) : (
 
         <>
