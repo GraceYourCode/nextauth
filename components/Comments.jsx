@@ -7,12 +7,12 @@ const Comments = () => {
   const socket = io("http://localhost:4000")
   const { allPosts, setAllPosts } = useContext(posts);
 
-  socket.on("chat-comment", msg => {
-    setAllPosts([...allPosts, msg]);
-  })
+  // socket.on("chat-comment", msg => {
+  //   setAllPosts([...allPosts, msg]);
+  // })
 
   useEffect(() => {
-    socket.connect();
+    // socket.connect();
     const fetchData = async () => {
       fetch("api/comments/all")
         .then(response => response.json())

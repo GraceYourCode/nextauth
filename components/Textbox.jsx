@@ -33,6 +33,7 @@ const Textbox = () => {
       });
 
       const pushData = await response.json();
+      console.log(pushData)
       //re-routes to home page
       if (response.ok) {
         router.push("/chat");
