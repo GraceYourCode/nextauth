@@ -18,7 +18,8 @@ const ChatPage = () => {
         <div className="flex justify-center w-screen">
           <main className="align-page flex flex-col gap-y-4 items-center py-3 md:py-5">
             <Comments posts={posts} />
-            {session?.user && <Textbox />}
+            {/* {session?.user && <Textbox />} */}
+            <Textbox />
           </main>
         </div>
       </>
