@@ -19,8 +19,6 @@ const Textbox = () => {
   const [fixed, setFixed] = useState(true);
   const router = useRouter();
 
-  const window = this.window;
-
   // keep track of previous scroll position
   let prevScrollPos = window.scrollY;
 

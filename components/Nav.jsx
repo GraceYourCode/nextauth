@@ -13,14 +13,13 @@ const Navigation = () => {
   const [providers, setProviders] = useState(null);
   const [fixed, setFixed] = useState(false)
 
-  const window = this.window;
 
   // keep track of previous scroll position
   let prevScrollPos = window.scrollY;
 
   window.addEventListener('scroll', function () {
     // current scroll position
-    const currentScrollPos = window.scrollY;
+    const currentScrollPos = this.window.scrollY;
 
     if (prevScrollPos > currentScrollPos) {
       // user has scrolled up
