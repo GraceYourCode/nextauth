@@ -7,7 +7,6 @@ const Navigation = dynamic(() => import('@/components/Nav'), {
   ssr: false,
 })
 import Provider from "@/components/Provider";
-import Navigation from "@/components/Nav";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
