@@ -62,17 +62,18 @@ const Navigation = () => {
        * so the user can sign out
        */}
       {session?.user ? (
-        <>
+        <div className="flex items-center gap-6">
           <Image
+          className="rounded-full"
             width={28}
             height={28}
             src={session?.user.image}
             alt="profile pic" />
-            
+
           <button className="auth" onClick={signOut}>
             Sign Out
           </button>
-        </>
+        </div>
       ) : (
 
         <>
