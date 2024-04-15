@@ -11,17 +11,17 @@ export const connectToDB = async () => {
   }
 
   try {
-    await mongoose.connect(process.env.MONGODB_URI), {
-      dbName: "you-dey-work",
+    await mongoose.connect(process.env.MONGODB_URI, {
+      dbName: "chat-app-database",
       useNewUrlParser: true,
       useUnifiedTopology: true
-    }
+    })
 
     isConnected = true;
 
     console.log("Database is connected");
     return mongoose
-} catch (error) {
+  } catch (error) {
     console.log(error);
     throw error
   }
