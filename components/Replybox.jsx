@@ -46,7 +46,7 @@ const Replybox = ({ asReply }) => {
     setSubmitting(true);
 
     const newReply = {
-      userId: "661818cc5609df2b77db8d58",
+      userId: session?.user.id,
       // content: content.split(" ").slice(1).join(" ").toString(),
       content: "my explicit content",
       likes: 0,
