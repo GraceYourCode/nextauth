@@ -14,7 +14,7 @@ export const POST = async (req) => {
         dateCreated,
         commentId,
         replyingTo,
-      });
+      }).populate("creator");
 
       await newReply.save();
 

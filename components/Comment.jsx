@@ -68,7 +68,7 @@ const Comment = ({ likes, content, username, dateCreated, id, image }) => {
           dateCreated="3 seconds ago"
           likes={0}
           username="romancaesar"
-          id={id}
+          id={"iam him"}
           key={12} />
         {
           reply &&

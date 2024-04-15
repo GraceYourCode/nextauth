@@ -14,6 +14,8 @@ const Reply = ({ likes, content, username, dateCreated, id }) => {
       id: id,
       show: true,
     })
+    console.log(id);
+    
   }
   return (
     <>

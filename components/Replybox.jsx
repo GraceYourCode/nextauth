@@ -12,7 +12,7 @@ import posts from "@/store/store";
 const Replybox = ({ asReply }) => {
   const socket = io("http://localhost:4000");;
 
-  const {reply, setReply} = useContext(posts)
+  const { reply, setReply } = useContext(posts)
   const [content, setContent] = useState(reply && `@${reply.id} `);
   const [submitting, setSubmitting] = useState(false);
   const input = useRef(null)
@@ -46,13 +46,15 @@ const Replybox = ({ asReply }) => {
     setSubmitting(true);
 
     const newReply = {
-      userId: session?.user.id,
-      content: content.split("").slice(1).join(" "),
+      // userId: session?.user.id,
+      content: content.split(" ").slice(1).join(" "),
       likes: 0,
       dateCreated: new Date(),
-      commentId,
+      commentId: reply.id,
       replyingTo: content.split(" ")[0].slice(1),
     }
+
+    console.log(newReply)
 
     try {
       const response = await fetch("/api/reply/new", {
