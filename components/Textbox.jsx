@@ -17,8 +17,6 @@ const Textbox = ({ asReply }) => {
   const { data: session } = useSession();
 
   const [fixed, setFixed] = useState(true);
-  const router = useRouter();
-
 
   useEffect(() => {
 

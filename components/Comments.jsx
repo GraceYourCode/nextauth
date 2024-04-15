@@ -8,6 +8,7 @@ const Comments = () => {
   const { allPosts, setAllPosts } = useContext(posts);
 
   socket.on("chat-comment", msg => {
+    console.log(allPosts)
     setAllPosts([...allPosts, msg]);
   })
 
@@ -26,7 +27,7 @@ const Comments = () => {
   // })
 
   useEffect(() => {
-    // socket.connect();
+    socket.connect();
     const fetchData = async () => {
       const response = await fetch("/api/comments/all");
       const data = await response.json();
