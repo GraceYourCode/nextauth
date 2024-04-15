@@ -29,7 +29,7 @@ const Replybox = ({ asReply }) => {
   };
 
   useEffect(() => {
-    if (!input) {
+    if (input) {
       input.current.setSelectionRange(input.current.value.length, input.current.value.length);
       input.current.focus();
     }
@@ -46,12 +46,13 @@ const Replybox = ({ asReply }) => {
     setSubmitting(true);
 
     const newReply = {
-      userId: session?.user.id,
-      content: content.split(" ").slice(1).join(" "),
+      userId: "661818cc5609df2b77db8d58",
+      // content: content.split(" ").slice(1).join(" ").toString(),
+      content: "my explicit content",
       likes: 0,
       dateCreated: new Date(),
-      commentId: reply.id,
-      replyingTo: content.split(" ")[0].slice(1),
+      commentId: "661836e31ed3d8a3fb166e01",
+      replyingTo: "enochbalogun",
     }
 
     console.log(newReply)
@@ -63,15 +64,17 @@ const Replybox = ({ asReply }) => {
       });
 
       const pushData = await response.json();
+      console.log(pushData);
       //re-routes to home page
       if (response.ok) {
         setContent(""); // empty the value of the text area
       };
 
-      socket.emit("chat-reply", pushData);
+      // socket.emit("chat-reply", pushData);
 
     } catch (error) {
-      console.log(error);
+      throw error
+      console.log(error.json());
     } finally {
       setSubmitting(false);
     }
