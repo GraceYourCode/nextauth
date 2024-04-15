@@ -46,7 +46,7 @@ const Replybox = ({ asReply }) => {
     setSubmitting(true);
 
     const newReply = {
-      // userId: session?.user.id,
+      userId: session?.user.id,
       content: content.split(" ").slice(1).join(" "),
       likes: 0,
       dateCreated: new Date(),
