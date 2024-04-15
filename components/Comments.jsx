@@ -8,7 +8,6 @@ const Comments = () => {
   const { allPosts, setAllPosts } = useContext(posts);
 
   socket.on("chat-comment", msg => {
-    console.log(allPosts)
     setAllPosts([...allPosts, msg]);
   })
 
@@ -31,6 +30,8 @@ const Comments = () => {
     const fetchData = async () => {
       const response = await fetch("/api/comments/all");
       const data = await response.json();
+
+      response.ok && console.log("api call successful")
       console.log(data);
       setAllPosts(data);
     }
