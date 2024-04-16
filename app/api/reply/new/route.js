@@ -23,7 +23,7 @@ export const POST = async (req) => {
     })
 
   } catch (error) {
-    return new Response(JSON.stringify(error.message), {
+    return new Response(JSON.stringify(newReply), {
       status: 500,
     })
   }
