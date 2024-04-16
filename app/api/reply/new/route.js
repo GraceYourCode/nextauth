@@ -2,7 +2,7 @@ import Reply from "@/models/reply";
 import { connectToDB } from "@/utils/database";
 
 export const POST = async (req) => {
-  const { content, likes, dateCreated, commentId, replyingTo } = req.json();
+  const { userId, content, likes, dateCreated, commentId, replyingTo } = req.json();
 
   try {
     await connectToDB();
