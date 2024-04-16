@@ -15,7 +15,7 @@ const Reply = ({ likes, content, username, dateCreated, id }) => {
       show: true,
     })
     console.log(id);
-    
+
   }
   return (
     <>
@@ -35,7 +35,7 @@ const Reply = ({ likes, content, username, dateCreated, id }) => {
         <main className="flex flex-col w-full gap-y-3">
           <div className="flex justify-between w-full">
             <Identifier date={dateCreated} username={username} />
-            <Button hide={true} click={showReplyBox} id={id} />
+            <Button hide={true} click={showReplyBox} id={id} type="Reply" />
           </div>
           <Contents content={content} />
           {
@@ -50,7 +50,7 @@ const Reply = ({ likes, content, username, dateCreated, id }) => {
                   <FaMinus className="icons" />
                 </button>
               </aside>
-              <Button click={showReplyBox} id={id} />
+              <Button click={showReplyBox} id={id} type="Reply" />
             </div>
           }
         </main>

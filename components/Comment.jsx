@@ -36,7 +36,7 @@ const Comment = ({ likes, content, username, dateCreated, id, image }) => {
         <main className="flex flex-col w-full gap-y-3">
           <div className="flex justify-between w-full">
             <Identifier date={dateCreated} username={username} image={image} />
-            <Button hide={true} click={showReplyBox} id={id} />
+            <Button hide={true} click={showReplyBox} id={id} type="Reply" />
           </div>
           <Contents content={content} />
           {
@@ -51,7 +51,7 @@ const Comment = ({ likes, content, username, dateCreated, id, image }) => {
                   <FaMinus className="icons" />
                 </button>
               </aside>
-              <Button click={showReplyBox} id={id} />
+              <Button click={showReplyBox} id={id} type="Reply" />
             </div>
           }
         </main>

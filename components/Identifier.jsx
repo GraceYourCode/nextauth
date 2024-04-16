@@ -18,6 +18,12 @@ const Identifier = ({ username, date, image }) => {
 
       <p className="font-semibold">{username}</p>
 
+      {
+        session?.user.name.replace(" ", "").toLocaleLowerCase() === username &&
+        <span className="bg-blue text-white px-1.5 py-0.5 rounded">you</span>
+      }
+      
+
       <p>{date}</p>
     </div>
   )

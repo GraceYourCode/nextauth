@@ -12,6 +12,12 @@ const handler = NextAuth({
     })
   ],
   callbacks: {
+    async jwt (token, user) {
+
+      if (user) {
+        token.id = user.id
+      }
+    },
     async session({ session }) {
       const sessionUser = await User.findOne({
         email: session.user.email,
