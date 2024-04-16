@@ -41,7 +41,7 @@ const Replybox = ({ asReply }) => {
     };
   }, []);
 
-  const postComment = async (e) => {
+  const postReply = async (e) => {
     e.preventDefault();
     setSubmitting(true);
 
@@ -84,7 +84,7 @@ const Replybox = ({ asReply }) => {
     <>
       {reply &&
         reply.show &&
-        <form onSubmit={postComment} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5 w-95%" ref={form}>
+        <form onSubmit={postReply} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5 w-95%" ref={form}>
           <Image
             alt="dp"
             src={dp}
