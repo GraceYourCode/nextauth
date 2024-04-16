@@ -14,11 +14,13 @@ const handler = NextAuth({
   callbacks: {
     async jwt (token, user) {
 
+      console.log(token, id)
       if (user) {
         token.id = user.id
       }
     },
     async session({ session }) {
+      console.log(session);
       const sessionUser = await User.findOne({
         email: session.user.email,
       })
