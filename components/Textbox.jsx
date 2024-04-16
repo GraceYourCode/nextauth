@@ -73,7 +73,6 @@ const Textbox = ({ asReply }) => {
       const pushData = await response.json();
       //re-routes to home page
       if (response.ok) {
-        // router.push("/chat");
         setContent(""); // empty the value of the text area
       };
 

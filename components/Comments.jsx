@@ -9,6 +9,7 @@ const Comments = () => {
   const [loading, setLoading] = useState(false);
 
   socket.on("chat-comment", msg => {
+    console.log(msg)
     setAllPosts([...allPosts, msg]);
   })
 
