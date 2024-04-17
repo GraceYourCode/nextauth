@@ -13,19 +13,21 @@ const Comments = () => {
     setAllPosts([...allPosts, msg]);
   })
 
-  // socket.on("chat-reply", msg => {
-  //   const updatedPosts = allPosts && allPosts.map((post) => {
-  //     if (post._id === msg.commentId) {
-  //       return {
-  //         ...post,
-  //         rreplies: [...post.replies, msg],
-  //       }
-  //     }
-  //     return post;
-  //   })
+  socket.on("chat-reply", msg => {
+    const updatedPosts = allPosts && allPosts.map((post) => {
+      if (post._id === msg.commentId) {
+        return {
+          ...post,
+          replies: post.replies ? [...post.replies, msg]: [msg],
+        }
+      }
+      return post;
+    })
 
-  //   setAllPosts(updatedPosts);
-  // })
+    setAllPosts(updatedPosts);
+
+    console.log(allPosts);
+  })
 
   useEffect(() => {
     socket.connect();
@@ -35,6 +37,7 @@ const Comments = () => {
 
       response.ok ? setLoading(true) : setLoading(false)
       setAllPosts(data);
+      console.log(data)
     }
 
     fetchData();
@@ -80,6 +83,7 @@ const Comments = () => {
             username={comment.creator.username}
             image={comment.creator.image}
             id={comment._id}
+            replies={comment.replies}
             key={comment._id} />
         )):
         <p className="min-h-screen bg-background flex items-center justify-center">

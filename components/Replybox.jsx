@@ -13,7 +13,7 @@ const Replybox = ({ asReply }) => {
   const socket = io("http://localhost:4000");;
 
   const { reply, setReply } = useContext(posts)
-  const [content, setContent] = useState(reply && `@${reply.id} `);
+  const [content, setContent] = useState(reply && `@${reply.username} `);
   const [submitting, setSubmitting] = useState(false);
   const input = useRef(null)
   const form = useRef(null)
@@ -22,8 +22,7 @@ const Replybox = ({ asReply }) => {
   const handleOutsideClick = (event) => {
     const parentElement = form.current;
     if (parentElement && !parentElement.contains(event.target)) {
-      // Clicked outside the parent element
-      // Perform your action here (e.g., hide the parent element)
+      // If this checks through it means the userClicked outside the parent element
       setReply(undefined);
     }
   };
@@ -41,21 +40,19 @@ const Replybox = ({ asReply }) => {
     };
   }, []);
 
-  const postComment = async (e) => {
+  const postReply = async (e) => {
     e.preventDefault();
     setSubmitting(true);
 
     const newReply = {
-      userId: session?.user.id,
-      // content: content.split(" ").slice(1).join(" ").toString(),
-      content: "my explicit content",
+      userId: "661c5b4cc0a66ac825534ed7",
+      content: content.split(" ").slice(1).join(" ").toString(),
       likes: 0,
       dateCreated: new Date(),
-      commentId: "661836e31ed3d8a3fb166e01",
-      replyingTo: "enochbalogun",
+      commentId: reply.commentId,
+      replyingTo: content.split(" ")[0].substring(1),
     }
 
-    console.log(newReply)
 
     try {
       const response = await fetch("/api/reply/new", {
@@ -64,17 +61,17 @@ const Replybox = ({ asReply }) => {
       });
 
       const pushData = await response.json();
-      console.log(pushData);
+      console.log(pushData, response.ok);
       //re-routes to home page
       if (response.ok) {
         setContent(""); // empty the value of the text area
+        setReply(undefined);
       };
 
-      // socket.emit("chat-reply", pushData);
+      socket.emit("chat-reply", pushData);
 
     } catch (error) {
       throw error
-      console.log(error.json());
     } finally {
       setSubmitting(false);
     }
@@ -84,7 +81,7 @@ const Replybox = ({ asReply }) => {
     <>
       {reply &&
         reply.show &&
-        <form onSubmit={postComment} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5 w-95%" ref={form}>
+        <form onSubmit={postReply} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5 w-95%" ref={form}>
           <Image
             alt="dp"
             src={dp}
@@ -97,7 +94,7 @@ const Replybox = ({ asReply }) => {
               (e) => {
                 /* this takes the contents imputed by the user and stores
                 it inside the container "content"*/
-                if (e.target.value === `@${reply.id}`) e.target.value = (`@${reply.id} `);
+                if (e.target.value === `@${reply.username}`) e.target.value = (`@${reply.username} `);
                 else setContent(e.target.value);
               }
             }

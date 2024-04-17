@@ -19,8 +19,9 @@ const replySchema = new Schema({
     required: [true, "Date is required"],
   },
   commentId: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: [true, "The comment Id is required!"],
+    ref: "Comment",
   },
   replyingTo: {
     type: String,

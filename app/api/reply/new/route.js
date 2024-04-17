@@ -2,20 +2,19 @@ import Reply from "@/models/reply";
 import { connectToDB } from "@/utils/database";
 
 export const POST = async (req) => {
-  const { content, likes, dateCreated, commentId, replyingTo } = req.json();
+  const { userId, content, likes, dateCreated, commentId, replyingTo } = await req.json();
+
+  const newReply = await Reply({
+    creator: userId,
+    content,
+    likes,
+    dateCreated,
+    commentId,
+    replyingTo,
+  }).populate("creator");
 
   try {
     await connectToDB();
-
-    const newReply = await Reply({
-      creator: userId,
-      content,
-      likes,
-      dateCreated,
-      commentId,
-      replyingTo,
-    }).populate("creator");
-
     await newReply.save();
 
     return new Response(JSON.stringify(newReply), {

@@ -6,12 +6,14 @@ import Replybox from "./Replybox";
 import { useContext } from "react";
 import posts from "@/store/store";
 
-const Reply = ({ likes, content, username, dateCreated, id }) => {
+const Reply = ({ likes, content, username, dateCreated, id, commentId, replyingTo }) => {
   const { reply, setReply } = useContext(posts)
 
   const showReplyBox = (id) => {
     setReply({
       id: id,
+      commentId: commentId,
+      username: username,
       show: true,
     })
     console.log(id);
@@ -37,7 +39,7 @@ const Reply = ({ likes, content, username, dateCreated, id }) => {
             <Identifier date={dateCreated} username={username} />
             <Button hide={true} click={showReplyBox} id={id} type="Reply" />
           </div>
-          <Contents content={content} />
+          <Contents content={content} replyingTo={replyingTo} />
           {
             // for sreens with smaller width
             <div className="flex sm:hidden justify-between">
