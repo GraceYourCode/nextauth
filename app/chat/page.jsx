@@ -62,14 +62,13 @@ const ChatPage = () => {
     setSubmitting(true);
 
     const newReply = {
-      userId: "661c5b4cc0a66ac825534ed7",
+      userId: session?.user.id,
       content: content.split(" ").slice(1).join(" ").toString(),
       likes: 0,
       dateCreated: new Date(),
       commentId: commentId,
       replyingTo: content.split(" ")[0].substring(1),
     }
-
 
     try {
       const response = await fetch("/api/reply/new", {
@@ -107,15 +106,13 @@ const ChatPage = () => {
     await fetch(`/api/likes/${id}`, {
       method: "POST",
       body: JSON.stringify({
-        userId: "661c5b4cc0a66ac825534ed7",
+        userId: session?.user.id,
         like,
       }),
     })
 
     console.log(JSON.stringify(like))
     const data = await response.json()
-
-    console.log(data);
 
     if (response.ok) {
       setLiked(prev => !prev);
@@ -188,9 +185,9 @@ const ChatPage = () => {
         <div className="flex flex-col items-center w-screen bg-background">
           <main className="align-page flex flex-col gap-y-4 items-center pb-3 md:pb-5">
             <Comments posts={posts} />
-            {/* {session?.user && <Textbox />} */}
+            {session?.user && <Textbox submit={postComment} />}
           </main>
-          <Textbox submit={postComment} />
+          {/* <Textbox submit={postComment} /> */}
         </div>
       </>
     </posts.Provider>

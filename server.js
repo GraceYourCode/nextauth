@@ -1,4 +1,5 @@
 const { createServer } = require("http");
+const { Condiment } = require("next/font/google");
 
 const { Server } = require("socket.io");
 
@@ -23,8 +24,8 @@ io.on("connection", (socket) => {
   socket.on("likes", msg => {
     io.emit("likes", msg)
   });
-})
 
+})
 
 
 httpServer.listen(5000, () => console.log("Server is connected"))
