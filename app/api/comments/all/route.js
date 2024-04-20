@@ -3,7 +3,7 @@ import Like from "@/models/like";
 import Reply from "@/models/reply";
 import { connectToDB } from "@/utils/database"
 
-export const GET = async () => {
+export const POST = async () => {
   try {
     await connectToDB();
 
