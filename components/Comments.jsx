@@ -9,7 +9,8 @@ const Comments = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("/api/comments/all", {
-        next: { revalidate: 5 }
+        next: { revalidate: 5 },
+        cache: "no-store"
       });
       const data = await response.json();
 
