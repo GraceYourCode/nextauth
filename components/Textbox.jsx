@@ -2,19 +2,14 @@
 
 import Image from "next/image";
 import dp from "@/public/assets/image-amyrobson.png";
-import io from "socket.io-client";
 import { useContext, useEffect, useRef, useState } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { IoIosSend } from "react-icons/io";
+import posts from "@/store/store";
 
 
-const Textbox = ({ asReply }) => {
-  const socket = io("http://localhost:4000");;
-
+const Textbox = ({ submit }) => {
   const [content, setContent] = useState();
-  const [submitting, setSubmitting] = useState(false);
-  const { data: session } = useSession();
+  const { submitting } = useContext(posts);
 
   const [fixed, setFixed] = useState(true);
 
@@ -52,42 +47,12 @@ const Textbox = ({ asReply }) => {
     // keep track of previous scroll position
   }, [])
 
-
-  const postComment = async (e) => {
-    e.preventDefault();
-    setSubmitting(true);
-
-    const newComment = {
-      userId: session?.user.id,
-      content: content,
-      likes: 0,
-      dateCreated: new Date(),
-    }
-
-    try {
-      const response = await fetch("/api/comments/new", {
-        method: "POST",
-        body: JSON.stringify(newComment)
-      });
-
-      const pushData = await response.json();
-      //re-routes to home page
-      if (response.ok) {
-        setContent(""); // empty the value of the text area
-      };
-
-      socket.emit("chat-comment", pushData);
-
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
   return (
     <div className={`${fixed ? "fixed pb-0" : "pb-3 md:pb-5"} align-page bottom-0 bg-background }`}>
-      <form onSubmit={postComment} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5">
+      <form onSubmit={(e) => {
+        submit(e, content);
+        setContent("");
+      }} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5">
         <Image
           alt="dp"
           src={dp}

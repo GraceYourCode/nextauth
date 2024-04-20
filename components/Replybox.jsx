@@ -2,22 +2,19 @@
 
 import Image from "next/image";
 import dp from "@/public/assets/image-amyrobson.png";
-import io from "socket.io-client";
 import { useContext, useEffect, useRef, useState } from "react";
-import { useSession } from "next-auth/react";
 import { IoIosSend } from "react-icons/io";
 import posts from "@/store/store";
 
 
 const Replybox = ({ asReply }) => {
-  const socket = io("http://localhost:4000");;
 
   const { reply, setReply } = useContext(posts)
   const [content, setContent] = useState(reply && `@${reply.username} `);
-  const [submitting, setSubmitting] = useState(false);
+  const { submitting } = useContext(posts);
   const input = useRef(null)
   const form = useRef(null)
-  const { data: session } = useSession();
+  const { postReply } = useContext(posts)
 
   const handleOutsideClick = (event) => {
     const parentElement = form.current;
@@ -40,48 +37,14 @@ const Replybox = ({ asReply }) => {
     };
   }, []);
 
-  const postReply = async (e) => {
-    e.preventDefault();
-    setSubmitting(true);
-
-    const newReply = {
-      userId: "661c5b4cc0a66ac825534ed7",
-      content: content.split(" ").slice(1).join(" ").toString(),
-      likes: 0,
-      dateCreated: new Date(),
-      commentId: reply.commentId,
-      replyingTo: content.split(" ")[0].substring(1),
-    }
-
-
-    try {
-      const response = await fetch("/api/reply/new", {
-        method: "POST",
-        body: JSON.stringify(newReply)
-      });
-
-      const pushData = await response.json();
-      console.log(pushData, response.ok);
-      //re-routes to home page
-      if (response.ok) {
-        setContent(""); // empty the value of the text area
-        setReply(undefined);
-      };
-
-      socket.emit("chat-reply", pushData);
-
-    } catch (error) {
-      throw error
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
   return (
     <>
       {reply &&
         reply.show &&
-        <form onSubmit={postReply} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5 w-95%" ref={form}>
+        <form onSubmit={(e) => {
+          postReply(e, reply.commentId, content);
+          setContent("");
+        }} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5 w-95%" ref={form}>
           <Image
             alt="dp"
             src={dp}
