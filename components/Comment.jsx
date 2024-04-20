@@ -71,7 +71,7 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
 
             {session?.user &&
               (session?.user.name.replace(" ", "").toLocaleLowerCase() === username ? (
-              <div>
+              <div className="flex gap-3 items-center">
                 <Button hide={true} type="Delete" />
                 <Button hide={true} type="Edit" />
               </div>
@@ -93,7 +93,7 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
 
               {session?.user &&
                 (session?.user.name.replace(" ", "").toLocaleLowerCase() === username ? (
-                <div>
+                <div className="flex gap-3 items-center">
                   <Button type="Delete" />
                   <Button type="Edit" />
                 </div>

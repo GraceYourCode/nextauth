@@ -36,7 +36,7 @@ const Reply = ({ likes, content, username, dateCreated, id, commentId, replyingT
             <Identifier date={dateCreated} username={username} />
             {session?.user &&
               (session?.user.name.replace(" ", "").toLocaleLowerCase() === username ? (
-                <div>
+                <div className="flex gap-3 items-center">
                   <Button hide={true} type="Delete" />
                   <Button hide={true} type="Edit" />
                 </div>
@@ -57,7 +57,7 @@ const Reply = ({ likes, content, username, dateCreated, id, commentId, replyingT
 
               {session?.user &&
                 (session?.user.name.replace(" ", "").toLocaleLowerCase() === username ? (
-                  <div>
+                  <div className="flex gap-3 items-center">
                     <Button type="Delete" />
                     <Button type="Edit" />
                   </div>
