@@ -8,7 +8,7 @@ const Button = ({ hide, click, id, type }) => {
         type === "Reply" ? <FaReply className="group-hover:text-gray-blue" /> : 
           type === "Edit" ? <MdOutlineEdit className="group-hover:text-gray-blue" /> : <MdDelete className="group-hover:text-pale-red" />
         }
-        <span className="group-hover:text-gray-blue">{type}</span>
+        <span className={`${type === "Delete" ? "group-hover:text-pale-red" : "group-hover:text-gray-blue"}`}>{type}</span>
     </button>
   )
 }

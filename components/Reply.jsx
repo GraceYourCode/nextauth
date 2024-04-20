@@ -7,7 +7,7 @@ import posts from "@/store/store";
 import LikeButton from "./LikeButton";
 import { useSession } from "next-auth/react";
 
-const Reply = ({ likes, content, username, dateCreated, id, commentId, replyingTo }) => {
+const Reply = ({ likes, content, username, dateCreated, id, commentId, replyingTo, usersThatLiked }) => {
   const { data: session } = useSession();
   const { reply, setReply } = useContext(posts)
 
@@ -27,7 +27,7 @@ const Reply = ({ likes, content, username, dateCreated, id, commentId, replyingT
         {
           session?.user &&
           <aside className="bg-background px-3 rounded-md py-3 hidden sm:block">
-            <LikeButton desktop={true} likes={likes} id={id} reply={true} />
+            <LikeButton desktop={true} likes={likes} id={id} reply={true} usersThatLiked={usersThatLiked} />
           </aside>
         }
 
@@ -51,7 +51,7 @@ const Reply = ({ likes, content, username, dateCreated, id, commentId, replyingT
               {
                 session?.user &&
                 <aside className="bg-background px-4 rounded-lg py-2">
-                  <LikeButton likes={likes} id={id} reply={true} />
+                  <LikeButton likes={likes} id={id} reply={true} usersThatLiked={usersThatLiked} />
                 </aside>
               }
 

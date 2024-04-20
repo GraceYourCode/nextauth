@@ -17,6 +17,7 @@ const Comments = () => {
 
       response.ok ? setLoading(true) : setLoading(false)
       await setAllPosts(data);
+      console.log(data)
     }
 
     fetchData();
@@ -63,6 +64,7 @@ const Comments = () => {
             image={comment.creator.image}
             id={comment._id}
             replies={comment.replies}
+            usersThatLiked={comment.usersThatLiked}
             key={comment._id} />
         )) :
         <p className="min-h-screen bg-background flex items-center justify-center">

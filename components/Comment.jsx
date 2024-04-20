@@ -122,6 +122,7 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
               username={reply.creator.username}
               commentId={id}
               replyingTo={reply.replyingTo}
+              usersThatLiked={reply.usersThatLiked}
               key={reply._id} />
           ))
         }
