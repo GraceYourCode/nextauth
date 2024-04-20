@@ -13,6 +13,8 @@ const LikeButton = ({ desktop, likes, id, reply, usersThatLiked }) => {
       usersThatLiked.map(each => {
         each === session?.user.id ? setLiked(true) : setLiked(false)
       })
+
+      console.log(usersThatLiked)
   }, [])
 
   return (
