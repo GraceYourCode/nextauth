@@ -8,7 +8,9 @@ const Comments = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("/api/comments/all");
+      const response = await fetch("/api/comments/all", {
+        next: { revalidate: 5 }
+      });
       const data = await response.json();
 
       response.ok ? setLoading(true) : setLoading(false)
