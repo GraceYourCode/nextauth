@@ -31,7 +31,7 @@ export const DELETE = async ({ params }) => {
   try {
     await connectToDB();
 
-    const commentToDelete = await Comment.findByIdAndDelete(params.id);
+    const commentToDelete = await Comment.findById(params.id);
 
     return new Response(JSON.stringify(commentToDelete), {
       status: 201,

@@ -100,29 +100,6 @@ const ChatPage = () => {
     }
   }
 
-  const likeAndUnlike = async (like, id, reply) => {
-    const response = await fetch(`/api/${reply ? "reply" : "comments"}/${id}`, {
-      method: "POST",
-      body: JSON.stringify(like)
-    })
-
-    await fetch(`/api/likes/${id}`, {
-      method: "POST",
-      body: JSON.stringify({
-        userId: session?.user.id,
-        like,
-      }),
-    })
-
-    console.log(JSON.stringify(like))
-    const data = await response.json()
-
-    if (response.ok) {
-      setLiked(prev => !prev);
-      socket.emit("likes", data)
-    };
-  }
-
   const popUpDelete = (id) => {
     setShowDelete(prev => !prev);
     console.log(id)

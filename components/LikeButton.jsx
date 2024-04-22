@@ -6,7 +6,29 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 const LikeButton = ({ desktop, likes, id, reply, usersThatLiked }) => {
   const { data: session } = useSession();
   const [liked, setLiked] = useState();
-  const { likeAndUnlike } = useContext(posts)
+  
+  const likeAndUnlike = async (like) => {
+    const response = await fetch(`/api/${reply ? "reply" : "comments"}/${id}`, {
+      method: "POST",
+      body: JSON.stringify(like)
+    })
+
+    await fetch(`/api/likes/${id}`, {
+      method: "POST",
+      body: JSON.stringify({
+        userId: session?.user.id,
+        like,
+      }),
+    })
+
+    console.log(JSON.stringify(like))
+    const data = await response.json()
+
+    if (response.ok) {
+      setLiked(prev => !prev);
+      socket.emit("likes", data)
+    };
+  }
 
   useEffect(() => {
     usersThatLiked &&
@@ -18,11 +40,11 @@ const LikeButton = ({ desktop, likes, id, reply, usersThatLiked }) => {
 
   return (
     <button className={`flex gap-3 items-center ${desktop && "flex-col"}`}>
-      <FaPlus className={`${liked && "hidden"} icons`} onClick={() => likeAndUnlike("like", id, reply)} />
+      <FaPlus className={`${liked && "hidden"} icons`} onClick={() => likeAndUnlike("like")} />
 
       <p className="font-medium text-blue">{likes}</p>
 
-      <FaMinus className={`${!liked && "hidden"} icons`} onClick={() => likeAndUnlike("unlike", id, reply)} />
+      <FaMinus className={`${!liked && "hidden"} icons`} onClick={() => likeAndUnlike("unlike")} />
     </button>
   )
 }
