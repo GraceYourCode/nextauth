@@ -25,7 +25,7 @@ const DeleteModal = () => {
             Are you sure you want to delete this comment? This will remove the comment and can't be undone.
           </p>
           <footer className="grid grid-cols-2 gap-4">
-            <button className="py-3 text-white font-medium text-sm bg-contents rounded-md" onClick={popUpDelete}>NO, CANCEL</button>
+            <button className="py-3 text-white font-medium text-sm bg-contents rounded-md" onClick={() => popUpDelete(null)}>NO, CANCEL</button>
             <button className="py-3 text-white font-medium bg-red rounded-md text-sm" onClick={deleteComment}>YES, DELETE</button>
           </footer>
         </main>
