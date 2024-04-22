@@ -2,8 +2,10 @@ import posts from "@/store/store";
 import { useSession } from "next-auth/react";
 import { useContext, useEffect, useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
+import { io } from "socket.io-client";
 
 const LikeButton = ({ desktop, likes, id, reply, usersThatLiked }) => {
+  const socket = io("http://localhost:5000")
   const { data: session } = useSession();
   const [liked, setLiked] = useState(false);
   

@@ -27,7 +27,7 @@ export const POST = async (req, { params }) => {
   }
 }
 
-export const DELETE = async ({ params }) => {
+export const DELETE = async (req, { params }) => {
   try {
     await connectToDB();
 
