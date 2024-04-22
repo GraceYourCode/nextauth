@@ -21,11 +21,10 @@ const LikeButton = ({ desktop, likes, id, reply, usersThatLiked }) => {
       }),
     })
 
-    console.log(JSON.stringify(like))
     const data = await response.json()
 
     if (response.ok) {
-      setLiked(prev => !prev);
+      setLiked(prev => prev = !prev);
       socket.emit("likes", data)
     };
   }

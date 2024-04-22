@@ -32,6 +32,11 @@ export const DELETE = async ({ params }) => {
     await connectToDB();
 
     const commentToDelete = await Comment.findById(params.id);
+    console.log(commentToDelete);
+
+  if(!commentToDelete) return new Response(JSON.stringify("Comment not found!!"), {
+    status: 404,
+  })
 
     return new Response(JSON.stringify(commentToDelete), {
       status: 201,
