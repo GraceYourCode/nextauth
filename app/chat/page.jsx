@@ -21,7 +21,7 @@ const ChatPage = () => {
   const [reply, setReply] = useState();
   const [submitting, setSubmitting] = useState(false);
   const [liked, setLiked] = useState(false);
-  const [showDelete, setShowDelete] = useState(true);
+  const [showDelete, setShowDelete] = useState(false);
   const [toDelete, setToDelete] = useState();
 
   const postComment = async (e, content) => {
@@ -197,7 +197,6 @@ const ChatPage = () => {
             <Comments posts={posts} />
             {showDelete && <DeleteModal />}
           </main>
-          <Textbox />
           {session?.user && <Textbox submit={postComment} />}
         </div>
       </>

@@ -13,6 +13,7 @@ const Reply = ({ likes, content, username, dateCreated, id, commentId, replyingT
   const { popUpDelete } = useContext(posts);
 
   const showReplyBox = (id) => {
+    console.log(id)
     setReply({
       id: id,
       commentId: commentId,
