@@ -5,7 +5,7 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 
 const LikeButton = ({ desktop, likes, id, reply, usersThatLiked }) => {
   const { data: session } = useSession();
-  const [liked, setLiked] = useState();
+  const [liked, setLiked] = useState(false);
   
   const likeAndUnlike = async (like) => {
     const response = await fetch(`/api/${reply ? "reply" : "comments"}/${id}`, {
