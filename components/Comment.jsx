@@ -70,15 +70,15 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
           <div className="flex justify-between w-full">
             <Identifier date={dateCreated} username={username} image={image} />
 
-            {/* {session?.user && */}
-              // (session?.user.name.replace(" ", "").toLocaleLowerCase() === username ? (
+            {session?.user &&
+              (session?.user.name.replace(" ", "").toLocaleLowerCase() === username ? (
                 <div className="flex gap-3 items-center">
                   <Button hide={true} click={popUpDelete} type="Delete" id={id} />
                   <Button hide={true} type="Edit" />
                 </div>
-              {/* ) : */}
-                // <Button hide={true} click={showReplyBox} id={id} type="Reply" />)
-            {/* } */}
+              ) :
+                <Button hide={true} click={showReplyBox} id={id} type="Reply" />)
+            }
           </div>
           <Contents content={content} />
           {

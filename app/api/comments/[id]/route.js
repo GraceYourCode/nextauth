@@ -1,4 +1,5 @@
 import Comment from "@/models/comment";
+import Reply from "@/models/reply";
 import { connectToDB } from "@/utils/database";
 
 export const POST = async (req, { params }) => {
@@ -31,8 +32,7 @@ export const DELETE = async (req, { params }) => {
   try {
     await connectToDB();
 
-    const commentToDelete = await Comment.findById(params.id);
-    console.log(commentToDelete);
+    const commentToDelete = await Comment.findByIdAndDelete(params.id) || await Reply.findByIdAndDelete(params.id);
 
   if(!commentToDelete) return new Response(JSON.stringify("Comment not found!!"), {
     status: 404,

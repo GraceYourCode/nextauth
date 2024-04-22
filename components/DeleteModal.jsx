@@ -3,7 +3,7 @@
 import posts from "@/store/store";
 import { useContext } from "react";
 
-const DeleteModal = () => {
+const DeleteModal = ({ reply }) => {
   const { popUpDelete } = useContext(posts);
   const { toDelete } = useContext(posts);
 
