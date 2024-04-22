@@ -3,19 +3,10 @@
 import posts from "@/store/store";
 import { useContext } from "react";
 
-const DeleteModal = ({ reply }) => {
+const DeleteModal = () => {
   const { popUpDelete } = useContext(posts);
-  const { toDelete } = useContext(posts);
+  const { deleteComment } = useContext(posts);
 
-  const deleteComment = async () => {
-    console.log(toDelete);
-
-    const response = await fetch(`/api/comments/${toDelete}`, {
-      method: "DELETE",
-    })
-    const data = await response.json();
-    console.log(data);
-  }
   return (
     <>
       <div className="fixed w-screen h-screen bg-black opacity-60 top-0 z-50"></div>

@@ -105,6 +105,19 @@ const ChatPage = () => {
     id && setToDelete(id);
   }
 
+  const deleteComment = async () => {
+    const response = await fetch(`/api/comments/${toDelete}`, {
+      method: "DELETE",
+    })
+    const data = await response.json();
+    console.log(data);
+
+    if (response.ok) {
+      setShowDelete(false);
+      socket.emit("deletes", data);
+    }
+  }
+
   useEffect(() => {
     socket.connect();
 
@@ -153,6 +166,22 @@ const ChatPage = () => {
       setAllPosts(updatedPosts);
     })
 
+    socket.on("deletes", msg => {
+      let updatedPosts;
+      if ("commentId" in msg) {
+        updatedPosts = allPosts && allPosts.map(post => {
+          if (post._id === msg.commentId) {
+            post.replies.filter(reply => reply._id !== msg._id)
+          }
+          return post;
+        })
+      } else {
+        updatedPosts = allPosts && allPosts.filter(post => post._id !== msg._id);
+      }
+      console.log(updatedPosts);
+      setAllPosts(updatedPosts);
+    })
+
     return () => socket.disconnect();
   }, [allPosts])
 
@@ -164,7 +193,7 @@ const ChatPage = () => {
       postReply,
       showDelete, setShowDelete,
       toDelete, setToDelete,
-      popUpDelete,
+      popUpDelete, deleteComment,
     }}>
       <>
         <div className="flex flex-col items-center w-screen bg-background">
