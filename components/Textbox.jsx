@@ -48,7 +48,7 @@ const Textbox = ({ submit }) => {
   }, [])
 
   return (
-    <div className={`${fixed ? "fixed pb-0" : "pb-3 md:pb-5"} align-page bottom-0 bg-background }`}>
+    <div className={`${fixed ? "fixed pb-0" : "pb-3 md:pb-5"} align-page bottom-0 bg-background z-20`}>
       <form onSubmit={async (e) => {
         await submit(e, content);
         setContent("");
