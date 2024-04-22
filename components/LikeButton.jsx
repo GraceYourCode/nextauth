@@ -5,7 +5,7 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 
 const LikeButton = ({ desktop, likes, id, reply, usersThatLiked }) => {
   const { data: session } = useSession();
-  const { liked, setLiked } = useContext(posts);
+  const [liked, setLiked] = useState();
   const { likeAndUnlike } = useContext(posts)
 
   useEffect(() => {

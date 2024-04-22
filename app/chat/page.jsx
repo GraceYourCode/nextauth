@@ -194,9 +194,9 @@ const ChatPage = () => {
         <div className="flex flex-col items-center w-screen bg-background">
           <main className="align-page flex flex-col gap-y-4 items-center pb-3 md:pb-5">
             <Comments posts={posts} />
-            {session?.user && <Textbox submit={postComment} />}
             {showDelete && <DeleteModal />}
           </main>
+          {session?.user && <Textbox submit={postComment} />}
         </div>
       </>
     </posts.Provider>
