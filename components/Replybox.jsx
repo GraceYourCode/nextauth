@@ -41,8 +41,8 @@ const Replybox = ({ asReply }) => {
     <>
       {reply &&
         reply.show &&
-        <form onSubmit={(e) => {
-          postReply(e, reply.commentId, content);
+        <form onSubmit={async (e) => {
+          await postReply(e, reply.commentId, content);
           setContent("");
         }} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5 w-95%" ref={form}>
           <Image

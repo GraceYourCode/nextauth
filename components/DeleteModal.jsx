@@ -1,9 +1,19 @@
 "use client"
 
 import posts from "@/store/store";
+import { useContext } from "react";
 
 const DeleteModal = () => {
   const { popUpDelete } = useContext(posts);
+  const { toDelete } = useContext(posts);
+
+  const deleteComment = async () => {
+    const response = await fetch(`api/comments/${toDelete}`, {
+      method: "DELETE",
+    })
+    const data = response.json();
+    console.log(data);
+  }
   return (
     <>
       <div className="fixed w-screen h-screen bg-black opacity-60 top-0"></div>

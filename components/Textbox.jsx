@@ -49,8 +49,8 @@ const Textbox = ({ submit }) => {
 
   return (
     <div className={`${fixed ? "fixed pb-0" : "pb-3 md:pb-5"} align-page bottom-0 bg-background }`}>
-      <form onSubmit={(e) => {
-        submit(e, content);
+      <form onSubmit={async (e) => {
+        await submit(e, content);
         setContent("");
       }} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5">
         <Image

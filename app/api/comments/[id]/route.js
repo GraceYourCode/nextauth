@@ -26,3 +26,19 @@ export const POST = async (req, { params }) => {
     })
   }
 }
+
+export const DELETE = async ({ params }) => {
+  try {
+    await connectToDB();
+
+    const commentToDelete = await Comment.findByIdAndDelete(params.id);
+
+    return new Response(JSON.stringify(commentToDelete), {
+      status: 201,
+    })
+  } catch (error) {
+    return new Response(JSON.stringify(error.message), {
+      status: 500,
+    })
+  }
+}
