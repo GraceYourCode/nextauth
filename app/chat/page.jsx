@@ -20,7 +20,6 @@ const ChatPage = () => {
   const [allPosts, setAllPosts] = useState();
   const [reply, setReply] = useState();
   const [submitting, setSubmitting] = useState(false);
-  const [liked, setLiked] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [toDelete, setToDelete] = useState();
 
@@ -162,8 +161,7 @@ const ChatPage = () => {
       allPosts, setAllPosts,
       reply, setReply,
       submitting, setSubmitting,
-      postReply, likeAndUnlike,
-      liked, setLiked,
+      postReply,
       showDelete, setShowDelete,
       toDelete, setToDelete,
       popUpDelete,
