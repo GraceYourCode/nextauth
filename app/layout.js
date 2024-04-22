@@ -2,7 +2,7 @@ import { Rubik } from "next/font/google";
 import "./globals.css";
 
 import dynamic from 'next/dynamic'
- 
+
 const Navigation = dynamic(() => import('@/components/Nav'), {
   ssr: false,
 })
@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
         <Provider>
           <div className="bg-background w-screen flex-col flex items-center">
             <Navigation />
-            <main>{children}</main>
+            <main className="opacity-80">{children}</main>
           </div>
         </Provider>
       </body>

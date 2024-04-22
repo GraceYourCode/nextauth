@@ -11,7 +11,8 @@ import { useSession } from "next-auth/react";
 const Comment = ({ likes, content, username, dateCreated, id, image, replies, usersThatLiked }) => {
   const { data: session } = useSession();
 
-  const { reply, setReply } = useContext(posts)
+  const { reply, setReply } = useContext(posts);
+  const { popUpDelete } = useContext(posts);
 
   const getTimeDifference = (recordedDateString) => {
     // Convert the recorded date string to a Date object
@@ -71,12 +72,12 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
 
             {session?.user &&
               (session?.user.name.replace(" ", "").toLocaleLowerCase() === username ? (
-              <div className="flex gap-3 items-center">
-                <Button hide={true} type="Delete" />
-                <Button hide={true} type="Edit" />
-              </div>
-            ) :
-              <Button hide={true} click={showReplyBox} id={id} type="Reply" />)
+                <div className="flex gap-3 items-center">
+                  <Button hide={true} click={popUpDelete} type="Delete" />
+                  <Button hide={true} type="Edit" />
+                </div>
+              ) :
+                <Button hide={true} click={showReplyBox} id={id} type="Reply" />)
             }
           </div>
           <Contents content={content} />
@@ -93,12 +94,12 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
 
               {session?.user &&
                 (session?.user.name.replace(" ", "").toLocaleLowerCase() === username ? (
-                <div className="flex gap-3 items-center">
-                  <Button type="Delete" />
-                  <Button type="Edit" />
-                </div>
-              ) :
-                <Button click={showReplyBox} id={id} type="Reply" />)
+                  <div className="flex gap-3 items-center">
+                    <Button type="Delete" click={popUpDelete} />
+                    <Button type="Edit" />
+                  </div>
+                ) :
+                  <Button click={showReplyBox} id={id} type="Reply" />)
               }
             </div>
           }

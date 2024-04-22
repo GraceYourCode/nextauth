@@ -10,6 +10,7 @@ import { useSession } from "next-auth/react";
 const Reply = ({ likes, content, username, dateCreated, id, commentId, replyingTo, usersThatLiked }) => {
   const { data: session } = useSession();
   const { reply, setReply } = useContext(posts)
+  const { popUpDelete } = useContext(posts);
 
   const showReplyBox = (id) => {
     setReply({
@@ -19,6 +20,9 @@ const Reply = ({ likes, content, username, dateCreated, id, commentId, replyingT
       show: true,
     })
   }
+
+
+  
   return (
     <>
       <div className="bg-white w-95% p-5 rounded-md flex gap-4 items-start min-h-fit">
@@ -37,7 +41,7 @@ const Reply = ({ likes, content, username, dateCreated, id, commentId, replyingT
             {session?.user &&
               (session?.user.name.replace(" ", "").toLocaleLowerCase() === username ? (
                 <div className="flex gap-3 items-center">
-                  <Button hide={true} type="Delete" />
+                  <Button hide={true} click={popUpDelete} type="Delete" />
                   <Button hide={true} type="Edit" />
                 </div>
               ) :
@@ -58,7 +62,7 @@ const Reply = ({ likes, content, username, dateCreated, id, commentId, replyingT
               {session?.user &&
                 (session?.user.name.replace(" ", "").toLocaleLowerCase() === username ? (
                   <div className="flex gap-3 items-center">
-                    <Button type="Delete" />
+                    <Button type="Delete" click={popUpDelete} />
                     <Button type="Edit" />
                   </div>
                 ) :

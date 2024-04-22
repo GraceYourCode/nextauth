@@ -10,6 +10,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import posts from "@/store/store";
 import { io } from 'socket.io-client';
+import DeleteModal from '@/components/DeleteModal';
 
 
 const ChatPage = () => {
@@ -20,6 +21,8 @@ const ChatPage = () => {
   const [reply, setReply] = useState();
   const [submitting, setSubmitting] = useState(false);
   const [liked, setLiked] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
+  const [toDelete, setToDelete] = useState();
 
   const postComment = async (e, content) => {
     e.preventDefault();
@@ -120,11 +123,15 @@ const ChatPage = () => {
     };
   }
 
+  const popUpDelete = (id) => {
+    setShowDelete(prev => !prev);
+    id && setToDelete(id);
+  }
+
   useEffect(() => {
     socket.connect();
 
     socket.on("chat-comment", msg => {
-      console.log(msg)
       setAllPosts([...allPosts, msg]);
     })
 
@@ -166,7 +173,6 @@ const ChatPage = () => {
           return post
         })
       }
-      console.log(updatedPosts)
       setAllPosts(updatedPosts);
     })
 
@@ -180,14 +186,17 @@ const ChatPage = () => {
       submitting, setSubmitting,
       postReply, likeAndUnlike,
       liked, setLiked,
+      showDelete, setShowDelete,
+      toDelete, setToDelete,
+      popUpDelete,
     }}>
       <>
         <div className="flex flex-col items-center w-screen bg-background">
           <main className="align-page flex flex-col gap-y-4 items-center pb-3 md:pb-5">
             <Comments posts={posts} />
             {session?.user && <Textbox submit={postComment} />}
+            {showDelete && <DeleteModal />}
           </main>
-          {/* <Textbox submit={postComment} /> */}
         </div>
       </>
     </posts.Provider>

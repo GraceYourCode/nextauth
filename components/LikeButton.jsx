@@ -14,7 +14,6 @@ const LikeButton = ({ desktop, likes, id, reply, usersThatLiked }) => {
         each === session?.user.id ? setLiked(true) : setLiked(false)
       })
 
-      console.log(usersThatLiked)
   }, [])
 
   return (

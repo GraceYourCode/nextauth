@@ -17,7 +17,6 @@ const Comments = () => {
 
       response.ok ? setLoading(true) : setLoading(false)
       await setAllPosts(data);
-      console.log(data)
     }
 
     fetchData();
