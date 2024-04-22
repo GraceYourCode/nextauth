@@ -69,61 +69,58 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
         edit.show &&
         edit.id === id && <EditBox contentsToEdit={content} />
       }
-      {
-        edit &&
-        edit.show &&
-        edit.id !== id &&
-        <div className="bg-white p-5 rounded-md flex gap-4 items-start w-full min-h-fit">
 
-          {/* this aside tag below is meant for desktop view and tablet view */}
+      <div className="bg-white p-5 rounded-md flex gap-4 items-start w-full min-h-fit">
+
+        {/* this aside tag below is meant for desktop view and tablet view */}
+        {
+          session?.user &&
+          <aside className="bg-background px-3 rounded-md py-3 hidden sm:block">
+            <LikeButton desktop={true} likes={likes} id={id}
+              usersThatLiked={usersThatLiked} />
+          </aside>
+        }
+
+        <main className="flex flex-col w-full gap-y-3">
+          <div className="flex justify-between w-full">
+            <Identifier date={dateCreated} username={username} image={image} />
+
+            {session?.user &&
+              (session?.user.name.replace(" ", "").toLocaleLowerCase() === username ? (
+                <div className="flex gap-3 items-center">
+                  <Button hide={true} click={popUpDelete} type="Delete" id={id} />
+                  <Button hide={true} type="Edit" click={showEditBox} id={id} />
+                </div>
+              ) :
+                <Button hide={true} click={showReplyBox} id={id} type="Reply" />)
+            }
+          </div>
+          <Contents content={content} />
           {
-            session?.user &&
-            <aside className="bg-background px-3 rounded-md py-3 hidden sm:block">
-              <LikeButton desktop={true} likes={likes} id={id}
-                usersThatLiked={usersThatLiked} />
-            </aside>
-          }
-
-          <main className="flex flex-col w-full gap-y-3">
-            <div className="flex justify-between w-full">
-              <Identifier date={dateCreated} username={username} image={image} />
+            // for sreens with smaller width
+            <div className="flex sm:hidden justify-between">
+              {
+                session?.user &&
+                <aside className="bg-background px-4 rounded-lg py-2">
+                  <LikeButton likes={likes} id={id}
+                    usersThatLiked={usersThatLiked} />
+                </aside>
+              }
 
               {session?.user &&
                 (session?.user.name.replace(" ", "").toLocaleLowerCase() === username ? (
                   <div className="flex gap-3 items-center">
-                    <Button hide={true} click={popUpDelete} type="Delete" id={id} />
-                    <Button hide={true} type="Edit" click={showEditBox} id={id} />
+                    <Button type="Delete" click={popUpDelete} id={id} />
+                    <Button type="Edit" click={showEditBox} id={id} />
                   </div>
                 ) :
-                  <Button hide={true} click={showReplyBox} id={id} type="Reply" />)
+                  <Button click={showReplyBox} id={id} type="Reply" />)
               }
             </div>
-            <Contents content={content} />
-            {
-              // for sreens with smaller width
-              <div className="flex sm:hidden justify-between">
-                {
-                  session?.user &&
-                  <aside className="bg-background px-4 rounded-lg py-2">
-                    <LikeButton likes={likes} id={id}
-                      usersThatLiked={usersThatLiked} />
-                  </aside>
-                }
+          }
+        </main>
+      </div>
 
-                {session?.user &&
-                  (session?.user.name.replace(" ", "").toLocaleLowerCase() === username ? (
-                    <div className="flex gap-3 items-center">
-                      <Button type="Delete" click={popUpDelete} id={id} />
-                      <Button type="Edit" click={showEditBox} id={id} />
-                    </div>
-                  ) :
-                    <Button click={showReplyBox} id={id} type="Reply" />)
-                }
-              </div>
-            }
-          </main>
-        </div>
-      }
       <div className="w-full flex flex-col items-end lg:w-95% xl:-11/12 border-0 border-l-2 border-solid border-l-light-gray gap-y-4">
         {
           reply &&
