@@ -69,7 +69,7 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
           edit.show ?
           edit.id === id && <EditBox contentsToEdit={content} />
           :
-          <div className="bg-white p-5 rounded-md flex gap-4 items-start w-full min-h-fit">
+          edit.id === id && <div className="bg-white p-5 rounded-md flex gap-4 items-start w-full min-h-fit">
 
             {/* this aside tag below is meant for desktop view and tablet view */}
             {
