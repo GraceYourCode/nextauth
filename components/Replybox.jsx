@@ -24,6 +24,11 @@ const Replybox = ({ asReply }) => {
     }
   };
 
+  useLayoutEffect(() => {
+    input.current.style.height = 'inherit';
+    input.current.style.height = `${input.current.scrollHeight}px`;
+  }, [content]);
+
   useEffect(() => {
     if (input) {
       input.current.setSelectionRange(input.current.value.length, input.current.value.length);

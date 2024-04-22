@@ -100,6 +100,26 @@ const ChatPage = () => {
     }
   }
 
+  const postEdit = async (e, id, content) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    try {
+      const response = await fetch(`/api/comments/${id}`,{
+        method: "PATCH",
+        body: JSON.stringify(content),
+      })
+      const data = await response.json();
+
+      console.log(data);
+      if (response.ok) {
+        setSubmitting(false);
+      }
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   const popUpDelete = (id) => {
     setShowDelete(prev => !prev);
     console.log(id)

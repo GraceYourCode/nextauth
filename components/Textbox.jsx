@@ -10,8 +10,14 @@ import posts from "@/store/store";
 const Textbox = ({ submit }) => {
   const [content, setContent] = useState();
   const { submitting } = useContext(posts);
+  const input = useRef(null);
 
   const [fixed, setFixed] = useState(true);
+
+  useLayoutEffect(() => {
+    input.current.style.height = 'inherit';
+    input.current.style.height = `${input.current.scrollHeight}px`;
+  }, [content]);
 
   useEffect(() => {
 
@@ -60,7 +66,7 @@ const Textbox = ({ submit }) => {
           width={30}
           className="hidden sm:block" />
 
-        <textarea value={content} required disabled={submitting}
+        <textarea value={content} required disabled={submitting} ref={input}
           onChange={
             (e) => {
               /* this takes the contents imputed by the user and stores

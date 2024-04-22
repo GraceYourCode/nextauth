@@ -67,7 +67,7 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
       {
         edit &&
           edit.show ?
-          <EditBox contentsToEdit={content} />
+          edit.id === id && <EditBox contentsToEdit={content} />
           :
           <div className="bg-white p-5 rounded-md flex gap-4 items-start w-full min-h-fit">
 
@@ -119,13 +119,13 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
               }
             </main>
           </div>}
-      {/* this div below holds all the nested replies to each comment */}
       <div className="w-full flex flex-col items-end lg:w-95% xl:-11/12 border-0 border-l-2 border-solid border-l-light-gray gap-y-4">
         {
           reply &&
           reply.id === id &&
           <Replybox reply={reply} />
         }
+        {/* this div below holds all the nested replies to each comment */}
         {replies &&
           replies.map(reply => (
             <Reply

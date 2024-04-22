@@ -36,7 +36,7 @@ const Reply = ({ likes, content, username, dateCreated, id, commentId, replyingT
         edit &&
           edit.show ?
 
-          <EditBox contentsToEdit={content} /> :
+          edit.id === id && <EditBox contentsToEdit={content} /> :
           
           <div className="bg-white w-95% p-5 rounded-md flex gap-4 items-start min-h-fit">
 

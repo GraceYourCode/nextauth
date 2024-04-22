@@ -28,7 +28,7 @@ export const POST = async (req, { params }) => {
   }
 }
 
-export const DELETE = async (req, { params }) => {
+export const DELETE = async ({ params }) => {
   try {
     await connectToDB();
 
@@ -45,5 +45,32 @@ export const DELETE = async (req, { params }) => {
     return new Response(JSON.stringify(error.message), {
       status: 500,
     })
+  }
+}
+
+export const PATCH = async (req, {params}) => {
+  const content = await req.json();
+
+  try {
+    await connectToDB();
+
+    const commentToUpdate = await Comment.findById(params.id) || await Reply.findById(params.id);
+
+    if(!commentToUpdate) return new Response(JSON.stringify("Post not found!!"), {
+      status: 404,
+    })
+
+    commentToUpdate.content = content;
+
+    await commentToUpdate.save();
+
+    return new Response(JSON.stringify(commentToUpdate), {
+      status: 201,
+    })
+     
+  } catch (error) {
+    return new Response(JSON.stringify(error.message), {
+      status: 500,
+    })    
   }
 }
