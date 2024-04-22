@@ -125,6 +125,7 @@ const ChatPage = () => {
 
   const popUpDelete = (id) => {
     setShowDelete(prev => !prev);
+    console.log(id)
     id && setToDelete(id);
   }
 
