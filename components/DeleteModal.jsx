@@ -10,11 +10,11 @@ const DeleteModal = () => {
   const deleteComment = async () => {
     console.log(toDelete);
 
-    // const response = await fetch(`api/comments/${toDelete}`, {
-    //   method: "DELETE",
-    // })
-    // const data = await response.json();
-    // console.log(data);
+    const response = await fetch(`api/comments/${toDelete}`, {
+      method: "DELETE",
+    })
+    const data = await response.json();
+    console.log(data);
   }
   return (
     <>
