@@ -64,8 +64,7 @@ const Replybox = ({ asReply }) => {
             className="textbox" />
           {
             //send button for desktop view
-            <button type="submit" className="text-white hidden xl:block disabled:bg-gray-blue px-5
-          py-2 bg-blue rounded-md text-sm hover:bg-gray-blue disabled:cursor-not-allowed disabled:text-xs"
+            <button type="submit" className="action-btn hidden xl:block"
               disabled={submitting}>
               {submitting ? `SENDING...` : `SEND`}
             </button>

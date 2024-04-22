@@ -22,6 +22,7 @@ const ChatPage = () => {
   const [submitting, setSubmitting] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [toDelete, setToDelete] = useState();
+  const [edit, setEdit] = useState(false);
 
   const postComment = async (e, content) => {
     e.preventDefault();
@@ -194,9 +195,10 @@ const ChatPage = () => {
       showDelete, setShowDelete,
       toDelete, setToDelete,
       popUpDelete, deleteComment,
+      edit, setEdit,
     }}>
       <>
-        <div className="flex flex-col items-center w-screen bg-background">
+        <div className="flex flex-col items-center w-screen bg-background min-h-screen">
           <main className="align-page flex flex-col gap-y-4 items-center pb-3 md:pb-5">
             <Comments posts={posts} />
             {showDelete && <DeleteModal />}
