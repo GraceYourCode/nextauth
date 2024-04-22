@@ -8,12 +8,13 @@ const DeleteModal = () => {
   const { toDelete } = useContext(posts);
 
   const deleteComment = async () => {
-    console.log(toDelete)
-    const response = await fetch(`api/comments/${toDelete}`, {
-      method: "DELETE",
-    })
-    const data = await response.json();
-    console.log(data);
+    console.log(toDelete);
+
+    // const response = await fetch(`api/comments/${toDelete}`, {
+    //   method: "DELETE",
+    // })
+    // const data = await response.json();
+    // console.log(data);
   }
   return (
     <>
