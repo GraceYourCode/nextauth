@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import dp from "@/public/assets/image-amyrobson.png";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { IoIosSend } from "react-icons/io";
 import posts from "@/store/store";
 
