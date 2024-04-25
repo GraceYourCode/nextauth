@@ -71,11 +71,7 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
         edit.id === id && <EditBox contentsToEdit={content} />
       }
 
-      {
-        toEdit &&
-        !toEdit.show &&
-        toEdit.id === id &&
-      <div className="bg-white p-5 rounded-md flex gap-4 items-start w-full min-h-fit">
+      <div className={`${edit && edit.id === id ? "hidden" : "flex"}bg-white p-5 rounded-md gap-4 items-start w-full min-h-fit`}>
 
         {/* this aside tag below is meant for desktop view and tablet view */}
         {
@@ -125,7 +121,6 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
           }
         </main>
       </div>
-      }
 
       <div className="w-full flex flex-col items-end lg:w-95% xl:-11/12 border-0 border-l-2 border-solid border-l-light-gray gap-y-4">
         {
