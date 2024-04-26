@@ -22,7 +22,7 @@ const ChatPage = () => {
   const [submitting, setSubmitting] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [toDelete, setToDelete] = useState();
-  const [edit, setEdit] = useState();
+  const [edit, setEdit] = useState(null);
 
   const postComment = async (e, content) => {
     e.preventDefault();

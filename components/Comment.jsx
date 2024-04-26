@@ -71,7 +71,7 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
         edit.id === id && <EditBox contentsToEdit={content} />
       }
 
-      <div className={`${edit && edit.id === id ? "hidden" : "flex"}bg-white p-5 rounded-md gap-4 items-start w-full min-h-fit`}>
+      <div className={`${edit === null ? "flex" : edit.id === id ? "hidden" : "flex"}bg-white p-5 rounded-md gap-4 items-start w-full min-h-fit`}>
 
         {/* this aside tag below is meant for desktop view and tablet view */}
         {

@@ -68,7 +68,7 @@ const EditBox = ({ contentsToEdit }) => {
           <button className="text-white bg-contents py-2 px-5 text-sm rounded-md" type="button"
             onClick={() => {
               console.log("click");
-              setEdit(undefined);
+              setEdit(null);
             }}>
             CANCEL
           </button>
