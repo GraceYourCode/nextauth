@@ -66,12 +66,11 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
   return (
     <div className="flex flex-col items-end w-full gap-4">
       {
-        edit &&
-        edit.show &&
+        edit !== null &&
         edit.id === id && <EditBox contentsToEdit={content} />
       }
 
-      <div className={`${edit === null ? "flex" : edit.id === id ? "hidden" : "flex"}bg-white p-5 rounded-md gap-4 items-start w-full min-h-fit`}>
+      <div className={`${edit === null ? "flex" : edit.id === id ? "hidden" : "flex"} bg-white p-5 rounded-md gap-4 items-start w-full min-h-fit`}>
 
         {/* this aside tag below is meant for desktop view and tablet view */}
         {
