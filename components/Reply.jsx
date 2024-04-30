@@ -2,7 +2,7 @@ import Identifier from "./Identifier";
 import Button from "./Button";
 import Contents from "./Contents";
 import Replybox from "./Replybox";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import posts from "@/store/store";
 import LikeButton from "./LikeButton";
 import { useSession } from "next-auth/react";
