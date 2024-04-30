@@ -62,12 +62,23 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
       show: true,
     })
   }
+  
+  const cancelEditBox = () => setEdit(null);
+  
+  const handleOutsideClick = (event, form) => {
+    const parentElement = form.current;
+    if (parentElement && !parentElement.contains(event.target)) {
+      // If this checks through it means the userClicked outside the parent element
+      setEdit(null);
+    }
+  };
 
   return (
     <div className="flex flex-col items-end w-full gap-4">
       {
         edit !== null &&
-        edit.id === id && <EditBox contentsToEdit={content} />
+        edit.id === id && <EditBox contentsToEdit={content}
+        cancel={cancelEditBox} handleOutsideClick={handleOutsideClick} />
       }
 
       <div className={`${edit === null ? "flex" : edit.id === id ? "hidden" : "flex"} bg-white p-5 rounded-md gap-4 items-start w-full min-h-fit`}>

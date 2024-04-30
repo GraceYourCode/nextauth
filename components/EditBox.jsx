@@ -4,21 +4,12 @@ import dp from "@/public/assets/image-amyrobson.png";
 import { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import posts from "@/store/store";
 
-const EditBox = ({ contentsToEdit }) => {
+const EditBox = ({ contentsToEdit, cancel, handleOutsideClick }) => {
   const { data: session } = useSession();
   const [content, setContent] = useState(contentsToEdit);
   const { submitting } = useContext(posts);
-  const { setEdit } = useContext(posts);
   const input = useRef(null);
   const form = useRef(null);
-
-  const handleOutsideClick = (event) => {
-    const parentElement = form.current;
-    if (parentElement && !parentElement.contains(event.target)) {
-      // If this checks through it means the userClicked outside the parent element
-      setEdit(undefined);
-    }
-  };
 
   useLayoutEffect(() => {
     input.current.style.height = 'inherit';
@@ -32,7 +23,7 @@ const EditBox = ({ contentsToEdit }) => {
       input.current.focus();
     }
 
-    document.addEventListener('click', handleOutsideClick);
+    document.addEventListener('click', handleOutsideClick(e, form));
 
     return () => {
       document.removeEventListener('click', handleOutsideClick);
@@ -66,10 +57,7 @@ const EditBox = ({ contentsToEdit }) => {
 
         <div className="flex gap-3">
           <button className="text-white bg-contents py-2 px-5 text-sm rounded-md" type="button"
-            onClick={() => {
-              console.log("click");
-              setEdit(null);
-            }}>
+            onClick={cancel}>
             CANCEL
           </button>
           <button type="submit" className="action-btn"

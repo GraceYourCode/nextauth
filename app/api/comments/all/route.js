@@ -6,7 +6,6 @@ import { connectToDB } from "@/utils/database"
 export const POST = async () => {
   try {
     await connectToDB();
-    console.log("In all... Vercel toto")
 
     const comments = await Comment.find({}).populate("creator");
 
