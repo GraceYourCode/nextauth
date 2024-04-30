@@ -25,8 +25,12 @@ io.on("connection", (socket) => {
     io.emit("likes", msg)
   });
 
-  socket.on("deletes", msg => {
-    io.emit("deletes", msg)
+  socket.on("delete", msg => {
+    io.emit("delete", msg)
+  });
+
+  socket.on("edit", msg => {
+    io.emit("edit", msg)
   });
 
 })

@@ -8,6 +8,7 @@ const EditBox = ({ contentsToEdit, cancel, handleOutsideClick }) => {
   const { data: session } = useSession();
   const [content, setContent] = useState(contentsToEdit);
   const { submitting } = useContext(posts);
+  const { postEdit } = useContext(posts);
   const input = useRef(null);
   const form = useRef(null);
 
@@ -32,7 +33,7 @@ const EditBox = ({ contentsToEdit, cancel, handleOutsideClick }) => {
 
   return (
     <form onSubmit={async (e) => {
-      await submit(e, content);
+      await postEdit(e, content);
       setContent("");
     }} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5 w-full" ref={form}>
       <Image
@@ -43,9 +44,9 @@ const EditBox = ({ contentsToEdit, cancel, handleOutsideClick }) => {
         className="hidden sm:block" />
       <div className="flex flex-col justify-end items-end w-full gap-3">
         <textarea value={content} required disabled={submitting} ref={input}
-        style={{
-          height: "inherit",
-        }}
+          style={{
+            height: "inherit",
+          }}
           onChange={
             (e) => {
               /* this takes the contents imputed by the user and stores

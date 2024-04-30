@@ -114,6 +114,7 @@ const ChatPage = () => {
       console.log(data);
       if (response.ok) {
         setSubmitting(false);
+        socket.emit("edit", data);
       }
     } catch (error) {
       console.log(error.message)
@@ -135,7 +136,7 @@ const ChatPage = () => {
 
     if (response.ok) {
       setShowDelete(false);
-      socket.emit("deletes", data);
+      socket.emit("delete", data);
     }
   }
 
@@ -187,7 +188,7 @@ const ChatPage = () => {
       setAllPosts(updatedPosts);
     })
 
-    socket.on("deletes", msg => {
+    socket.on("delete", msg => {
       let updatedPosts;
       if ("commentId" in msg) {
         updatedPosts = allPosts && allPosts.map(post => {
@@ -200,6 +201,33 @@ const ChatPage = () => {
         updatedPosts = allPosts && allPosts.filter(post => post._id !== msg._id);
       }
       console.log(updatedPosts);
+      setAllPosts(updatedPosts);
+    })
+
+    socket.on("edit", msg => {
+      let updatedPosts;
+      if ("commentId" in msg) {
+        updatedPosts = allPosts && allPosts.map(post => {
+          if (post._id === msg.commentId) {
+            post.replies.map(reply => {
+              if (reply._id === msg._id) {
+                reply.content = msg.content;
+                return reply;
+              }
+              return reply;
+            })
+          }
+          return post;
+        })
+      } else {
+        updatedPosts = allPosts && allPosts.map(post => {
+          if (post._id === msg._id) {
+            post.edit = msg.edit;
+            return post;
+          }
+          return post
+        })
+      }
       setAllPosts(updatedPosts);
     })
 
@@ -216,6 +244,7 @@ const ChatPage = () => {
       toDelete, setToDelete,
       popUpDelete, deleteComment,
       edit, setEdit,
+      postEdit,
     }}>
       <>
         <div className="flex flex-col items-center w-screen bg-background min-h-screen">

@@ -5,9 +5,11 @@ import dp from "@/public/assets/image-amyrobson.png";
 import { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { IoIosSend } from "react-icons/io";
 import posts from "@/store/store";
+import { useSession } from "next-auth/react";
 
 
 const Textbox = ({ submit }) => {
+  const {data: session} = useSession();
   const [content, setContent] = useState();
   const { submitting } = useContext(posts);
   const input = useRef(null);
@@ -61,7 +63,7 @@ const Textbox = ({ submit }) => {
       }} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5">
         <Image
           alt="dp"
-          src={dp}
+          src={session?.user.image || dp}
           height={30}
           width={30}
           className="hidden sm:block" />

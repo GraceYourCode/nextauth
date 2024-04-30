@@ -5,10 +5,11 @@ import dp from "@/public/assets/image-amyrobson.png";
 import { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { IoIosSend } from "react-icons/io";
 import posts from "@/store/store";
+import { useSession } from "next-auth/react";
 
 
 const Replybox = ({ asReply }) => {
-
+  const { data: session } = useSession();
   const { reply, setReply } = useContext(posts)
   const [content, setContent] = useState(reply && `@${reply.username} `);
   const { submitting } = useContext(posts);
@@ -52,7 +53,7 @@ const Replybox = ({ asReply }) => {
         }} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5 w-95%" ref={form}>
           <Image
             alt="dp"
-            src={dp}
+            src={session?.user.image || dp}
             height={30}
             width={30}
             className="hidden sm:block" />

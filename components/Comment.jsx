@@ -145,6 +145,7 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
               id={reply._id}
               likes={reply.likes}
               username={reply.creator.username}
+              image={reply.creator.image}
               commentId={id}
               replyingTo={reply.replyingTo}
               usersThatLiked={reply.usersThatLiked}
