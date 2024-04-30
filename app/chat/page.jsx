@@ -224,7 +224,6 @@ const ChatPage = () => {
             {showDelete && <DeleteModal />}
           </main>
           {session?.user && <Textbox submit={postComment} />}
-          <Textbox />
         </div>
       </>
     </posts.Provider>

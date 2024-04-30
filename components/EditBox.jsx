@@ -23,7 +23,7 @@ const EditBox = ({ contentsToEdit, cancel, handleOutsideClick }) => {
       input.current.focus();
     }
 
-    document.addEventListener('click', handleOutsideClick(e, form));
+    document.addEventListener('click', (e) => handleOutsideClick(e, form));
 
     return () => {
       document.removeEventListener('click', handleOutsideClick);
