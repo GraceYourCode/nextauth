@@ -14,8 +14,8 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
 
   const { reply, setReply } = useContext(posts);
   const { popUpDelete } = useContext(posts);
-  const { edit, setEdit } = useContext(posts);
-  const [toEdit, setToEdit] = useState(edit)
+  // const { edit, setEdit } = useContext(posts);
+  const [edit, setEdit] = useState(null);
 
   const getTimeDifference = (recordedDateString) => {
     // Convert the recorded date string to a Date object
@@ -74,7 +74,6 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
 
         {/* this aside tag below is meant for desktop view and tablet view */}
         {
-          session?.user &&
           <aside className="bg-background px-3 rounded-md py-3 hidden sm:block">
             <LikeButton desktop={true} likes={likes} id={id}
               usersThatLiked={usersThatLiked} />
@@ -100,7 +99,6 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
             // for sreens with smaller width
             <div className="flex sm:hidden justify-between">
               {
-                session?.user &&
                 <aside className="bg-background px-4 rounded-lg py-2">
                   <LikeButton likes={likes} id={id}
                     usersThatLiked={usersThatLiked} />

@@ -41,11 +41,11 @@ const LikeButton = ({ desktop, likes, id, reply, usersThatLiked }) => {
 
   return (
     <button className={`flex gap-3 items-center ${desktop && "flex-col"}`}>
-      <FaPlus className={`${liked && "hidden"} icons`} onClick={() => likeAndUnlike("like")} />
+      {session?.user &&<FaPlus className={`${liked && "hidden"} icons`} onClick={() => likeAndUnlike("like")} />}
 
       <p className="font-medium text-blue">{likes}</p>
 
-      <FaMinus className={`${!liked && "hidden"} icons`} onClick={() => likeAndUnlike("unlike")} />
+      {session?.user &&<FaMinus className={`${!liked && "hidden"} icons`} onClick={() => likeAndUnlike("unlike")} />}
     </button>
   )
 }

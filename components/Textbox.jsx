@@ -78,7 +78,7 @@ const Textbox = ({ submit }) => {
 
         {
           //send button for desktop view
-          <button type="submit" className="ation-btn hidden xl:block"
+          <button type="submit" className="action-btn hidden xl:block"
             disabled={submitting}>
             {submitting ? `SENDING...` : `SEND`}
           </button>
