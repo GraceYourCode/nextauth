@@ -229,6 +229,7 @@ const ChatPage = () => {
           return post
         })
       }
+      console.log(updatedPosts)
       setAllPosts(updatedPosts);
     })
 
