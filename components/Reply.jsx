@@ -11,7 +11,7 @@ import EditBox from "./EditBox";
 const Reply = ({ likes, content, username, image, dateCreated, id, commentId, replyingTo, usersThatLiked }) => {
   const { data: session } = useSession();
   const { reply, setReply } = useContext(posts);
-  const [edit, setEdit] = useState(null);
+  const {edit, setEdit} = useContext(osts);
   const { popUpDelete } = useContext(posts);
 
   const showReplyBox = (id) => {

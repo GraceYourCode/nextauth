@@ -14,8 +14,8 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
 
   const { reply, setReply } = useContext(posts);
   const { popUpDelete } = useContext(posts);
-  // const { edit, setEdit } = useContext(posts);
-  const [edit, setEdit] = useState(null);
+  const { edit, setEdit } = useContext(posts);
+  // const [edit, setEdit] = useState(null);
 
   const getTimeDifference = (recordedDateString) => {
     // Convert the recorded date string to a Date object

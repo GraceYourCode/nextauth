@@ -114,6 +114,7 @@ const ChatPage = () => {
       console.log(data);
       if (response.ok) {
         setSubmitting(false);
+        setEdit(null);
         socket.emit("edit", data);
       }
     } catch (error) {
