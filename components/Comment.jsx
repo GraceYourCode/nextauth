@@ -77,7 +77,7 @@ const Comment = ({ likes, content, username, dateCreated, id, image, replies, us
     <div className="flex flex-col items-end w-full gap-4">
       {
         edit !== null &&
-        edit.id === id && <EditBox contentsToEdit={content}
+        edit.id === id && <EditBox contentsToEdit={content} id={id}
         cancel={cancelEditBox} handleOutsideClick={handleOutsideClick} />
       }
 

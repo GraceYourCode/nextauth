@@ -4,7 +4,7 @@ import dp from "@/public/assets/image-amyrobson.png";
 import { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import posts from "@/store/store";
 
-const EditBox = ({ contentsToEdit, cancel, handleOutsideClick }) => {
+const EditBox = ({ contentsToEdit, id, cancel, handleOutsideClick }) => {
   const { data: session } = useSession();
   const [content, setContent] = useState(contentsToEdit);
   const { submitting } = useContext(posts);
@@ -33,7 +33,7 @@ const EditBox = ({ contentsToEdit, cancel, handleOutsideClick }) => {
 
   return (
     <form onSubmit={async (e) => {
-      await postEdit(e, content);
+      await postEdit(e, id, content);
       setContent("");
     }} className="bg-white shadow-lg rounded-md flex gap-3 items-start p-5 w-full" ref={form}>
       <Image

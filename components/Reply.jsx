@@ -40,19 +40,11 @@ const Reply = ({ likes, content, username, image, dateCreated, id, commentId, re
     }
   };
 
-  const submit = async () => {
-    try {
-      const response = await fetch ("")
-    } catch (error) {
-      
-    }
-  }
-
   return (
     <>
       {
         edit !== null &&
-        edit.id === id && <EditBox contentsToEdit={content}
+        edit.id === id && <EditBox contentsToEdit={content} id={id}
         cancel={cancelEditBox} handleOutsideClick={handleOutsideClick} />
       }
 
