@@ -7,7 +7,13 @@ export const POST = async () => {
   try {
     await connectToDB();
 
-    const myComments = await Comment.find({}).populate("creator").populate("replies").sort({likes: -1})
+    const myComments = await Comment.find({}).populate("creator").populate({
+      path: "replies",
+      populate: {
+        path: "creator",
+        model: "User",
+      }
+    }).sort({likes: -1})
 
     console.log(myComments)
 
