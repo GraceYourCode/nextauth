@@ -10,20 +10,24 @@ const LikeButton = ({ desktop, likes, id, usersThatLiked }) => {
   const [liked, setLiked] = useState(false);
   
   const likeAndUnlike = async (like) => {
-    const response = await fetch(`/api/comments/${id}`, {
-      method: "POST",
-      body: JSON.stringify({
-        userId: session?.user.id,
-        like,
+    try {
+      const response = await fetch(`/api/comments/${id}`, {
+        method: "POST",
+        body: JSON.stringify({
+          userId: session?.user.id,
+          like,
+        })
       })
-    })
-
-    const data = await response.json()
-
-    if (response.ok) {
-      setLiked(prev => !prev);
-      socket.emit("likes", data)
-    };
+  
+      const data = await response.json()
+  
+      if (response.ok) {
+        setLiked(prev => !prev);
+        socket.emit("likes", data)
+      };
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
