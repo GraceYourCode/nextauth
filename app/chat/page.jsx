@@ -44,10 +44,6 @@ const ChatPage = () => {
 
       const pushData = await response.json();
 
-      await fetch("/api/likes/new", {
-        method: "POST",
-        body: JSON.stringify(pushData._id)
-      })
       //re-routes to home page
       if (response.ok) {
         socket.emit("chat-comment", pushData);
@@ -80,11 +76,6 @@ const ChatPage = () => {
       });
 
       const pushData = await response.json();
-
-      await fetch("/api/likes/new", {
-        method: "POST",
-        body: JSON.stringify(pushData._id)
-      })
 
       if (response.ok) {
         setReply(undefined);

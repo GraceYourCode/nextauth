@@ -22,6 +22,10 @@ const commentSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "Reply",
     }],
+    usersThatLiked: [{
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    }],
 });
 
 const Comment = models.Comment || model("Comment", commentSchema);

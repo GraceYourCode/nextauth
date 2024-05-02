@@ -7,43 +7,6 @@ export const POST = async () => {
   try {
     await connectToDB();
 
-    // const comments = await Comment.find({}).sort({likes: -1}).populate("creator");
-
-    // const replies = await Reply.find({}).sort({likes: -1}).populate("creator");
-
-    // const likes = await Like.find({});
-
-    // const allInfo = []
-
-    // comments.forEach(comment => {
-    //   let customComment = { ...comment };
-
-    //   likes.forEach(like => {
-    //     if (like.post.toString() === comment._id.toString()) {
-    //       customComment._doc.usersThatLiked = like.usersThatLiked;
-    //     }
-    //   })
-
-    //   replies.forEach(reply => {
-    //     let customReply = { ...reply };
-
-    //     likes.forEach(like => {
-    //       if (like.post.toString() === reply._id.toString()) {
-    //         customReply._doc.usersThatLiked = like.usersThatLiked;
-    //       }
-    //     })
-
-    //     if (reply.commentId.toString() === comment._id.toString()) {
-    //       if (customComment._doc.replies) customComment._doc.replies.push(customReply._doc);
-    //       else {
-    //         let arrayReply = [customReply._doc];
-    //         customComment._doc.replies = arrayReply;
-    //       }
-    //     }
-    //   })
-    //   allInfo.push(customComment._doc)
-    // })
-
     const myComments = await Comment.find({}).populate("creator").populate("replies").sort({likes: -1})
 
     console.log(myComments)

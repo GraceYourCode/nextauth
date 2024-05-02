@@ -53,7 +53,7 @@ const Reply = ({ likes, content, username, image, dateCreated, id, userId, comme
         {/* this aside tag below is meant for desktop view and tablet view */}
         {
           <aside className="bg-background px-3 rounded-md py-3 hidden sm:block">
-            <LikeButton desktop={true} likes={likes} id={id} reply={true} usersThatLiked={usersThatLiked} />
+            <LikeButton desktop={true} likes={likes} id={id} usersThatLiked={usersThatLiked} />
           </aside>
         }
 
@@ -76,7 +76,7 @@ const Reply = ({ likes, content, username, image, dateCreated, id, userId, comme
             <div className="flex sm:hidden justify-between">
               {
                 <aside className="bg-background px-4 rounded-lg py-2">
-                  <LikeButton likes={likes} id={id} reply={true} usersThatLiked={usersThatLiked} />
+                  <LikeButton likes={likes} id={id} usersThatLiked={usersThatLiked} />
                 </aside>
               }
 

@@ -27,6 +27,10 @@ const replySchema = new Schema({
     type: String,
     required: [true, "User you are replying to is required!"],
   },
+  usersThatLiked: [{
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  }],
 })
 
 const Reply = models.Reply || model("Reply", replySchema);
