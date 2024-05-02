@@ -19,7 +19,8 @@ export const POST = async (req) => {
     await newReply.save();
 
     const comment = await Comment.findById(commentId);
-    comment.replies.push(newReply._id)
+    comment.replies.push(newReply._id);
+    await comment.save();
 
     return new Response(JSON.stringify(newReply), {
       status: 201,
