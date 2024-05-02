@@ -45,7 +45,7 @@ export const DELETE = async ({ params }) => {
       status: 201,
     })
   } catch (error) {
-    return new Response(JSON.stringify(error.message), {
+    return new Response(JSON.stringify(error.message, params.id), {
       status: 500,
     })
   }
