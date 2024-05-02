@@ -53,7 +53,7 @@ export const POST = async () => {
           as: "replies",
         }
       }
-    ]).sort({likes: -1})
+    ]).populate("creator").sort({likes: -1})
 
     console.log(myComments)
 

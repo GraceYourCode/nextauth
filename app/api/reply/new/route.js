@@ -5,21 +5,22 @@ import { connectToDB } from "@/utils/database";
 export const POST = async (req) => {
   const { userId, content, likes, dateCreated, commentId, replyingTo } = await req.json();
 
-  const newReply = await Reply({
-    creator: userId,
-    content,
-    likes,
-    dateCreated,
-    commentId,
-    replyingTo,
-  }).populate("creator");
-
   try {
     await connectToDB();
+
+    const newReply = await Reply({
+      creator: userId,
+      content,
+      likes,
+      dateCreated,
+      commentId,
+      replyingTo,
+    }).populate("creator");
+  
     await newReply.save();
 
     const comment = await Comment.findById(commentId);
-    comment.replies.push(newReply._id);
+    comment.replies.push(newReply);
     await comment.save();
 
     return new Response(JSON.stringify(newReply), {
