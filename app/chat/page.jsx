@@ -43,6 +43,7 @@ const ChatPage = () => {
       });
 
       const pushData = await response.json();
+      console.log(pushData)
 
       //re-routes to home page
       if (response.ok) {
@@ -76,6 +77,7 @@ const ChatPage = () => {
       });
 
       const pushData = await response.json();
+      console.log(pushData)
 
       if (response.ok) {
         setReply(undefined);
