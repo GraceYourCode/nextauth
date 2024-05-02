@@ -44,16 +44,7 @@ export const POST = async () => {
     //   allInfo.push(customComment._doc)
     // })
 
-    const myComments = await Comment.aggregate([
-      {
-        $lookup: {
-          from: "Reply",
-          localField: "_id",
-          foreignField: "commentId",
-          as: "replies",
-        }
-      }
-    ]).populate("creator").sort({likes: -1})
+    const myComments = await Comment.find({}).populate("creator").populate("replies").sort({likes: -1})
 
     console.log(myComments)
 
