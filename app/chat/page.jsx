@@ -99,6 +99,7 @@ const ChatPage = () => {
         body: JSON.stringify(content),
       })
       const data = await response.json();
+      console.log(data)
 
       if (response.ok) {
         setSubmitting(false);
@@ -121,6 +122,7 @@ const ChatPage = () => {
       method: "DELETE",
     })
     const data = await response.json();
+    console.log(data)
 
     if (response.ok) {
       setShowDelete(false);

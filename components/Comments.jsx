@@ -14,7 +14,7 @@ const Comments = () => {
         cache: "no-store"
       });
       const data = await response.json();
-
+console.log(data)
       response.ok ? setLoading(true) : setLoading(false)
       await setAllPosts(data);
     }

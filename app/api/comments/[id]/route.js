@@ -4,7 +4,7 @@ import { connectToDB } from "@/utils/database";
 
 export const POST = async (req, { params }) => {
   const { userId, like } = await req.json();
-
+console.log(userId, like)
   try {
     await connectToDB();
     const existingComment = await Comment.findById(params.id).populate("creator") || await Reply.findById(params.id).populate("creator");
@@ -14,11 +14,11 @@ export const POST = async (req, { params }) => {
     })
 
     existingComment.likes = like === "like" ? existingComment.likes + 1 : existingComment.likes - 1;
-    existingComment.usersThatLiked = like === "like" ? 
-    existingComment.usersThatLiked.push(userId) : 
-    existingComment.usersThatLiked.filter(id => id !== userId)
+    // existingComment.usersThatLiked = like === "like" ? 
+    // existingComment.usersThatLiked.push(userId) : 
+    // existingComment.usersThatLiked.filter(id => id !== userId)
 
-
+console.log(existingComment)
     await existingComment.save();
 
     return new Response(JSON.stringify(existingComment), {
