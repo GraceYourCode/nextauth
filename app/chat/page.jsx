@@ -86,8 +86,6 @@ const ChatPage = () => {
         body: JSON.stringify(pushData._id)
       })
 
-      console.log(pushData, response.ok);
-      //re-routes to home page
       if (response.ok) {
         setReply(undefined);
         socket.emit("chat-reply", pushData);
@@ -111,7 +109,6 @@ const ChatPage = () => {
       })
       const data = await response.json();
 
-      console.log(data);
       if (response.ok) {
         setSubmitting(false);
         setEdit(null);
@@ -133,7 +130,6 @@ const ChatPage = () => {
       method: "DELETE",
     })
     const data = await response.json();
-    console.log(data);
 
     if (response.ok) {
       setShowDelete(false);
@@ -223,13 +219,12 @@ const ChatPage = () => {
       } else {
         updatedPosts = allPosts && allPosts.map(post => {
           if (post._id === msg._id) {
-            post.edit = msg.edit;
+            post.content = msg.content;
             return post;
           }
           return post
         })
       }
-      console.log(updatedPosts)
       setAllPosts(updatedPosts);
     })
 

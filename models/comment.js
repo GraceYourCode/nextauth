@@ -18,10 +18,10 @@ const commentSchema = new Schema({
       type: Date,
       required: [true, "Date is required"],
     },
-    replies: {
+    replies: [{
       type: Schema.Types.ObjectId,
       ref: "Reply",
-    },
+    }],
 });
 
 const Comment = models.Comment || model("Comment", commentSchema);

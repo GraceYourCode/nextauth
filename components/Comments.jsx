@@ -61,6 +61,7 @@ const Comments = () => {
             likes={comment.likes}
             username={comment.creator.username}
             image={comment.creator.image}
+            userId={comment.creator._id}
             id={comment._id}
             replies={comment.replies}
             usersThatLiked={comment.usersThatLiked}

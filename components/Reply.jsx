@@ -8,7 +8,7 @@ import LikeButton from "./LikeButton";
 import { useSession } from "next-auth/react";
 import EditBox from "./EditBox";
 
-const Reply = ({ likes, content, username, image, dateCreated, id, commentId, replyingTo, usersThatLiked }) => {
+const Reply = ({ likes, content, username, image, dateCreated, id, userId, commentId, replyingTo, usersThatLiked }) => {
   const { data: session } = useSession();
   const { reply, setReply } = useContext(posts);
   const {edit, setEdit} = useContext(posts);
@@ -59,7 +59,7 @@ const Reply = ({ likes, content, username, image, dateCreated, id, commentId, re
 
         <main className="flex flex-col w-full gap-y-3">
           <div className="flex justify-between w-full">
-            <Identifier date={dateCreated} username={username} image={image} />
+            <Identifier date={dateCreated} username={username} image={image} id={userId} />
             {session?.user &&
               (session?.user.name.replace(" ", "").toLocaleLowerCase() === username ? (
                 <div className="flex gap-3 items-center">

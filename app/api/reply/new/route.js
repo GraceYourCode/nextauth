@@ -1,3 +1,4 @@
+import Comment from "@/models/comment";
 import Reply from "@/models/reply";
 import { connectToDB } from "@/utils/database";
 
@@ -16,6 +17,9 @@ export const POST = async (req) => {
   try {
     await connectToDB();
     await newReply.save();
+
+    const comment = await Comment.findById(commentId);
+    comment.replies.push(newReply._id)
 
     return new Response(JSON.stringify(newReply), {
       status: 201,
