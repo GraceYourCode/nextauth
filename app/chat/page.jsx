@@ -120,15 +120,20 @@ const ChatPage = () => {
   }
 
   const deleteComment = async () => {
-    const response = await fetch(`/api/comments/${toDelete}`, {
-      method: "DELETE",
-    })
-    const data = await response.json();
-    console.log(data)
-
-    if (response.ok) {
-      setShowDelete(false);
-      socket.emit("delete", data);
+    try {
+      const response = await fetch(`/api/comments/${toDelete}`, {
+        method: "DELETE",
+      })
+      const data = await response.json();
+      console.log(data)
+  
+      if (response.ok) {
+        setShowDelete(false);
+        socket.emit("delete", data);
+      }
+      
+    } catch (error) {
+      console.log(error)
     }
   }
 
