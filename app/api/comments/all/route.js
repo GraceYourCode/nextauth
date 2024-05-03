@@ -1,5 +1,4 @@
 import Comment from "@/models/comment";
-import Like from "@/models/like";
 import Reply from "@/models/reply";
 import { connectToDB } from "@/utils/database"
 
