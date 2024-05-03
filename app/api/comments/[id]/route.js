@@ -35,17 +35,17 @@ export const GET = async ({ params }) => {
   try {
     await connectToDB();
 
-    // const commentToDelete = await Comment.findById(params.id) || await Reply.findById(params.id);
+    const commentToDelete = await Comment.findById(params.id) || await Reply.findById(params.id);
 
-    // if (!commentToDelete) return new Response(JSON.stringify("Comment not found!!"), {
-    //   status: 404,
-    // })
+    if (!commentToDelete) return new Response(JSON.stringify("Comment not found!!"), {
+      status: 404,
+    })
 
-    return new Response(JSON.stringify(params), {
+    return new Response(JSON.stringify(commentToDelete), {
       status: 201,
     })
   } catch (error) {
-    return new Response(JSON.stringify(error.message), {
+    return new Response(JSON.stringify(params), {
       status: 500,
     })
   }
