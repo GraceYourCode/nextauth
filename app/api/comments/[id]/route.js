@@ -46,7 +46,7 @@ export const GET = async ({ params }) => {
       status: 201,
     })
   } catch (error) {
-    return new Response(JSON.stringify(params), {
+    return new Response(JSON.stringify(error.message), {
       status: 500,
     })
   }
