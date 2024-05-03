@@ -35,7 +35,7 @@ export const GET = async ({ params }) => {
   try {
     await connectToDB();
 
-    const commentToDelete = await Comment.findByIdAndDelete(params.id) || await Reply.findByIdAndDelete(params.id);
+    const commentToDelete = await Comment.findById(params.id) || await Reply.findById(params.id);
 
     if (!commentToDelete) return new Response(JSON.stringify("Comment not found!!"), {
       status: 404,
@@ -45,7 +45,7 @@ export const GET = async ({ params }) => {
       status: 201,
     })
   } catch (error) {
-    return new Response(JSON.stringify(error.message, params.id), {
+    return new Response(JSON.stringify(error.message), {
       status: 500,
     })
   }
