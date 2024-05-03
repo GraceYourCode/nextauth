@@ -31,7 +31,7 @@ console.log(existingComment)
   }
 }
 
-export const DELETE = async ({ params }) => {
+export const GET = async ({ params }) => {
   try {
     await connectToDB();
 
