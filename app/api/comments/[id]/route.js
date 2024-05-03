@@ -41,7 +41,7 @@ export const GET = async ({ params }) => {
       status: 404,
     })
 
-    return new Response(JSON.stringify(commentToDelete), {
+    return new Response(JSON.stringify(params), {
       status: 201,
     })
   } catch (error) {
