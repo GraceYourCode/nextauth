@@ -31,7 +31,7 @@ console.log(existingComment)
   }
 }
 
-export const GET = async ({ params }) => {
+export const GET = async (req, {params}) => {
   try {
     console.log("monkey vercel")
     await connectToDB();
