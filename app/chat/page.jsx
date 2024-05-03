@@ -125,7 +125,7 @@ const ChatPage = () => {
         method: "DELETE",
       })
       const data = await response.json();
-      console.log(data)
+      console.log(data, "set")
   
       if (response.ok) {
         setShowDelete(false);
@@ -133,7 +133,7 @@ const ChatPage = () => {
       }
       
     } catch (error) {
-      console.log(error)
+      console.log(error, "sechi")
     }
   }
 
